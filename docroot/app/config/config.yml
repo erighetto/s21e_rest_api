@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@PosBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -41,24 +42,34 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver: pdo_mysql
-        host: '%database_host%'
-        port: '%database_port%'
-        dbname: '%database_name%'
-        user: '%database_user%'
-        password: '%database_password%'
-        charset: UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #path: '%database_path%'
-
+        default_connection: default
+        connections:
+            default:
+                driver:   pdo_sqlsrv
+                host:     '%database_host%'
+                dbname:   '%database_name%'
+                user:     '%database_user%'
+                password: '%database_password%'
+            fos_user:
+                driver:   pdo_mysql
+                host:     '%database_host2%'
+                port:     '%database_port2%'
+                dbname:   '%database_name2%'
+                user:     '%database_user2%'
+                password: '%database_password2%'
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    PosBundle: ~
+            fos_user:
+                connection: fos_user
+                mappings:
+                    AppBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -101,6 +112,9 @@ fos_user:
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
     user_class: AppBundle\Entity\User
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
 
 # fosOAuthServer Configuration
 fos_oauth_server:

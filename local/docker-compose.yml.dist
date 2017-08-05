@@ -21,7 +21,7 @@ services:
     volumes:
       - "/var/lib/mysql"
     environment:
-      MYSQL_DATABASE: s212_rest_api
+      MYSQL_DATABASE: s21e_rest_api
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: symfony_usr
       MYSQL_PASSWORD: symfony_pwd
