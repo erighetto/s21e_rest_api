@@ -1,0 +1,43 @@
+version: '2'
+services:
+  symfony-app:
+    image: erighetto/drupal-dev:latest
+    ports:
+      - "8000:80"
+    depends_on:
+      - mysql-server
+    links:
+      - mysql-server
+      - mailcatcher
+      - pma
+    volumes:
+      - "./../docroot:/var/www/html"
+      - "./config/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+
+  mysql-server:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: s212_rest_api
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: symfony_usr
+      MYSQL_PASSWORD: symfony_pwd
+
+  mailcatcher:
+    image: helder/mailcatcher
+    ports:
+      - "8002:80"
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql-server
+      PMA_USER: symfony_usr
+      PMA_PASSWORD: symfony_pwd
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    ports:
+      - "8001:80"
