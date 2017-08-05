@@ -19,5 +19,7 @@ In un'altra shell poi esegui:
     
     docker exec -it local_symfony-app_1 bash
     composer install --prefer-dist
+    php bin/console doctrine:schema:update --force --em=fos
+    php bin/console doctrine:fixtures:load --em=fos --no-interaction
     
     

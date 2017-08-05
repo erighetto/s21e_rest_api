@@ -1189,7 +1189,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-08-04 11:55:10"
+            "time": "2017-08-04T11:55:10+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",

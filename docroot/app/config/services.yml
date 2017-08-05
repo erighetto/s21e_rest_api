@@ -33,3 +33,9 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    s21e_entity_manager:
+        public: false
+        class: AppBundle\Doctrine\ORM\EntityManagerDecorator
+        decorates: doctrine.orm.default_entity_manager
+        arguments: ["@s21e_entity_manager.inner"]

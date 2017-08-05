@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * User
@@ -24,13 +25,8 @@ class User extends BaseUser
   protected $id;
 
 
-  /**
-   * Get id
-   *
-   * @return integer
-   */
-  public function getId()
+  public function __construct()
   {
-    return $this->id;
+    parent::__construct();
   }
 }

@@ -19,102 +19,38 @@ class Client extends BaseClient
    */
   protected $id;
 
-  /**
-   * @ORM\Column(name="random_id",  type="string", length=255)
-   */
-  protected $randomId;
-
-  /**
-   * @ORM\Column(name="secret",  type="string", length=255)
-   */
-  protected $secret;
-
-  /**
-   * @ORM\Column(name="redirect_uris",  type="string", length=4294967295)
-   */
-  protected $redirectUris = array();
-
-  /**
-   * @ORM\Column(name="allowed_grant_types",  type="string", length=4294967295)
-   */
-  protected $allowedGrantTypes = array();
 
   public function __construct()
   {
     parent::__construct();
   }
 
-  public function getId() {
-    return parent::getId(); 
-  }
-
   /**
-   * @inheritDoc
+   * @return array
    */
-  public function setRandomId($random) {
-    parent::setRandomId($random); 
+  public function getRedirectUris(): array {
+    return $this->redirectUris;
   }
 
   /**
-   * @inheritDoc
-   */
-  public function getRandomId() {
-    return parent::getRandomId(); 
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function getPublicId() {
-    return parent::getPublicId(); 
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function setSecret($secret) {
-    parent::setSecret($secret); 
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function getSecret() {
-    return parent::getSecret(); 
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function checkSecret($secret) {
-    return parent::checkSecret($secret); 
-  }
-
-  /**
-   * @inheritDoc
+   * @param array $redirectUris
    */
   public function setRedirectUris(array $redirectUris) {
-    parent::setRedirectUris($redirectUris); 
+    $this->redirectUris = serialize($redirectUris);
   }
 
   /**
-   * @inheritDoc
+   * @return array
    */
-  public function getRedirectUris() {
-    return parent::getRedirectUris(); 
+  public function getAllowedGrantTypes(): array {
+    return $this->allowedGrantTypes;
   }
 
   /**
-   * @inheritDoc
+   * @param array $allowedGrantTypes
    */
-  public function setAllowedGrantTypes(array $grantTypes) {
-    parent::setAllowedGrantTypes($grantTypes); 
+  public function setAllowedGrantTypes(array $allowedGrantTypes) {
+    $this->allowedGrantTypes = serialize($allowedGrantTypes);
   }
 
-  /**
-   * @inheritDoc
-   */
-  public function getAllowedGrantTypes() {
-    return parent::getAllowedGrantTypes(); 
-  }
 }

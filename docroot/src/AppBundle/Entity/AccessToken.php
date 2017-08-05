@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Entity/AccessToken.php
+// src/AppBundle/Entity/Fos/AccessToken.php
 
 namespace AppBundle\Entity;
 
