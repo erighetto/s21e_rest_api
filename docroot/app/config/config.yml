@@ -41,14 +41,16 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection: fos
+        default_connection: default
         connections:
             default:
-                driver:   pdo_sqlsrv
-                host:     '%database_host%'
-                dbname:   '%database_name%'
-                user:     '%database_user%'
-                password: '%database_password%'
+                driver:   pdo_sqlite
+                path:     "%kernel.cache_dir%/%kernel.environment%/app_%kernel.environment%.db"
+#                driver:   pdo_sqlsrv
+#                host:     '%database_host%'
+#                dbname:   '%database_name%'
+#                user:     '%database_user%'
+#                password: '%database_password%'
             fos:
                 driver:   pdo_mysql
                 host:     '%database_host2%'
@@ -59,7 +61,6 @@ doctrine:
                 charset:  UTF8
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 

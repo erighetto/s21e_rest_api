@@ -4,6 +4,7 @@ services:
     image: erighetto/drupal-dev:latest
     ports:
       - "8000:80"
+      - "9000:9000"
     depends_on:
       - mysql-server
     links:
