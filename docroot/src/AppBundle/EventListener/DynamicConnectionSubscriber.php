@@ -5,7 +5,7 @@ namespace AppBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\{
-  ORM\Events, Common\Persistence\Event\LoadClassMetadataEventArgs, DBAL\Driver\Connection, Bundle\DoctrineBundle\Registry
+  ORM\Events, Common\Persistence\Event\LoadClassMetadataEventArgs, DBAL\Connection, Bundle\DoctrineBundle\Registry
 };
 
 /**
@@ -16,12 +16,12 @@ use Doctrine\{
 class DynamicConnectionSubscriber implements EventSubscriberInterface {
 
   /**
-   * @var \Doctrine\DBAL\Driver\Connection
+   * @var \Doctrine\DBAL\Connection
    */
   private $defaultConnection;
 
   /**
-   * @var \Doctrine\DBAL\Driver\Connection
+   * @var \Doctrine\DBAL\Connection
    */
   private $fosConnection;
 
@@ -33,8 +33,8 @@ class DynamicConnectionSubscriber implements EventSubscriberInterface {
   /**
    * DynamicConnectionSubscriber constructor.
    *
-   * @param \Doctrine\DBAL\Driver\Connection $defaultConnection
-   * @param \Doctrine\DBAL\Driver\Connection $fosConnection
+   * @param \Doctrine\DBAL\Connection $defaultConnection
+   * @param \Doctrine\DBAL\Connection $fosConnection
    * @param \Doctrine\Bundle\DoctrineBundle\Registry $doctrine
    */
   public function __construct(Connection $defaultConnection, Connection $fosConnection, Registry $doctrine)
@@ -65,6 +65,7 @@ class DynamicConnectionSubscriber implements EventSubscriberInterface {
         'AppBundle\Entity\PosCustomer',
         'AppBundle\Entity\PosItem'
       ])) {
+
       $this->doctrine->getManager()->flush();
       if ($this->defaultConnection->isConnected()) {
         $this->defaultConnection->close();

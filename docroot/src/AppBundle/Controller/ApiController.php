@@ -5,18 +5,38 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\PosItem;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 
 class ApiController extends FOSRestController
 {
   /**
-   * @Route("/api")
+   * @Route("/")
    */
   public function indexAction()
   {
     $data = array("hello" => "world");
     $view = $this->view($data);
+    return $this->handleView($view);
+  }
+
+  /**
+   * @Route("/items")
+   */
+  public function itemsAction()
+  {
+    $product = $this->getDoctrine()
+      ->getRepository(PosItem::class)
+      ->findAll();
+
+    if (!$product) {
+      throw $this->createNotFoundException(
+        'No product found '
+      );
+    }
+
+    $view = $this->view($product);
     return $this->handleView($view);
   }
 }

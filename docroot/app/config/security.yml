@@ -18,9 +18,9 @@ security:
             security: false
         api:
             pattern: ^/api                             # All URLs are protected
-            fos_oauth: true                            # OAuth2 protected resource
+            fos_oauth: false                            # OAuth2 protected resource
             stateless: true                            # Do no set session cookies
-            anonymous: false                           # Anonymous access is not allowed
+            anonymous: true                           # Anonymous access is not allowed
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
