@@ -41,24 +41,20 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection: default
-        connections:
-            default:
-                driver:   pdo_sqlite
-                path:     "%kernel.cache_dir%/app_%kernel.environment%.db"
-#                driver:   pdo_sqlsrv
-#                host:     '%database_host%'
-#                dbname:   '%database_name%'
-#                user:     '%database_user%'
-#                password: '%database_password%'
-            fos:
-                driver:   pdo_mysql
-                host:     '%database_host2%'
-                port:     '%database_port2%'
-                dbname:   '%database_name2%'
-                user:     '%database_user2%'
-                password: '%database_password2%'
-                charset:  UTF8
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -72,49 +68,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-# Nelmio CORS Configuration
-nelmio_cors:
-    defaults:
-        allow_credentials: false
-        allow_origin: ['*']
-        allow_headers: ['*']
-        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-        max_age: 3600
-        hosts: []
-        origin_regex: false
-
-# Nelmio API Doc Configuration
-nelmio_api_doc: ~
-
-# fosREST Configuration
+# Fos Rest
 fos_rest:
     routing_loader:
-        default_format: json                            # All responses should be JSON formated
-        include_format: false                           # We do not include format in request, so that all responses
-                                                        # will eventually be JSON formated
-    format_listener:
-        rules:
-            - { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-    view:
-        view_response_listener: true
-
-# fosUser Configuration
-fos_user:
-    db_driver: orm
-    firewall_name: api                                  # Seems to be used when registering user/reseting password,
-                                                        # but since there is no "login", as so it seems to be useless in
-                                                        # our particular context, but still required by "FOSUserBundle"
-    user_class: AppBundle\Entity\User
-    from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
-
-# fosOAuthServer Configuration
-fos_oauth_server:
-    db_driver:           orm
-    client_class:        AppBundle\Entity\Client
-    access_token_class:  AppBundle\Entity\AccessToken
-    refresh_token_class: AppBundle\Entity\RefreshToken
-    auth_code_class:     AppBundle\Entity\AuthCode
-    service:
-        user_provider: fos_user.user_provider            # This property will be used when valid credentials are given to load the user upon access token creation
+        default_format: json

@@ -1,14 +1,5 @@
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
-
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
-
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
-    prefix:   /api
+    type: rest
+    host:   localhost
+    prefix: /api
+    resource: "@AppBundle/Resources/config/routing.yml"
