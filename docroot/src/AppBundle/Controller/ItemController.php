@@ -23,7 +23,7 @@ class ItemController extends FOSRestController implements ClassResourceInterface
       ->getRepository(Item::class)
       ->findAll();
         $view = $this->view($data, 200)
-          ->setTemplate("AppBundle:Items:getItems.html.twig")
+          ->setTemplate("AppBundle:Item:getItems.html.twig")
           ->setTemplateVar('items')
         ;
 
@@ -41,7 +41,7 @@ class ItemController extends FOSRestController implements ClassResourceInterface
       ->getRepository(Item::class)
       ->find($id);
     $view = $this->view($data, 200)
-      ->setTemplate("AppBundle:Items:getItem.html.twig")
+      ->setTemplate("AppBundle:Item:getItem.html.twig")
       ->setTemplateVar('item')
     ;
 

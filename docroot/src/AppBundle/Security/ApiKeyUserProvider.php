@@ -7,50 +7,64 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class ApiKeyUserProvider
  *
  * @package AppBundle\Security
  */
-class ApiKeyUserProvider implements UserProviderInterface
-{
+class ApiKeyUserProvider implements UserProviderInterface {
+
+  /**
+   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $container;
+
+  /**
+   * ApiKeyUserProvider constructor.
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   */
+  public function __construct(ContainerInterface $container) {
+    $this->container = $container;
+  }
+
 
   /**
    * @param $apiKey
    *
    * @return string
    */
-  public function getUsernameForApiKey($apiKey)
-  {
-    // Look up the username based on the token in the database, via
-    // an API call, or do something entirely different
-    $username = "pincopallo";
-
-        return $username;
+  public function getUsernameForApiKey($apiKey) {
+    $api_user = $this->container->getParameter('api_user');
+    if (strpos($api_user, $apiKey) === FALSE) {
+      $username = NULL;
     }
+    else {
+      $username = str_replace(':' . $apiKey, '', $api_user);
+    }
+
+    return $username;
+  }
 
   /**
    * @param string $username
    *
    * @return \Symfony\Component\Security\Core\User\User
    */
-  public function loadUserByUsername($username)
-  {
+  public function loadUserByUsername($username) {
     return new User(
       $username,
-      null,
-      // the roles for the user - you may choose to determine
-      // these dynamically somehow based on the user
-      array('ROLE_API')
+      NULL,
+      ['ROLE_API']
     );
   }
 
   /**
    * @param \Symfony\Component\Security\Core\User\UserInterface $user
    */
-  public function refreshUser(UserInterface $user)
-  {
+  public function refreshUser(UserInterface $user) {
     // this is used for storing authentication in the session
     // but in this example, the token is sent in each request,
     // so authentication can be stateless. Throwing this exception
@@ -63,8 +77,7 @@ class ApiKeyUserProvider implements UserProviderInterface
    *
    * @return bool
    */
-  public function supportsClass($class)
-  {
+  public function supportsClass($class) {
     return User::class === $class;
   }
 }

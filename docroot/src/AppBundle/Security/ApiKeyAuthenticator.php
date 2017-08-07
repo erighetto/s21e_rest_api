@@ -17,8 +17,7 @@ use Symfony\Component\Security\Http\Authentication\SimplePreAuthenticatorInterfa
  *
  * @package AppBundle\Security
  */
-class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
-{
+class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface {
 
   /**
    * @param \Symfony\Component\HttpFoundation\Request $request
@@ -26,19 +25,12 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
    *
    * @return \Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken
    */
-  public function createToken(Request $request, $providerKey)
-  {
+  public function createToken(Request $request, $providerKey) {
     // look for an apikey query parameter
     $apiKey = $request->query->get('apikey');
 
-    // or if you want to use an "apikey" header, then do something like this:
-    // $apiKey = $request->headers->get('apikey');
-
     if (!$apiKey) {
       throw new BadCredentialsException();
-
-      // or to just skip api key authentication
-      // return null;
     }
 
     return new PreAuthenticatedToken(
@@ -54,8 +46,7 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
    *
    * @return bool
    */
-  public function supportsToken(TokenInterface $token, $providerKey)
-  {
+  public function supportsToken(TokenInterface $token, $providerKey) {
     return $token instanceof PreAuthenticatedToken && $token->getProviderKey() === $providerKey;
   }
 
@@ -66,8 +57,7 @@ class ApiKeyAuthenticator implements SimplePreAuthenticatorInterface
    *
    * @return \Symfony\Component\Security\Core\Authentication\Token\PreAuthenticatedToken
    */
-  public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey)
-  {
+  public function authenticateToken(TokenInterface $token, UserProviderInterface $userProvider, $providerKey) {
     if (!$userProvider instanceof ApiKeyUserProvider) {
       throw new \InvalidArgumentException(
         sprintf(
