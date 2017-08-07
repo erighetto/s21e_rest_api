@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\FOSRestController;
+use AppBundle\Entity\Item;
 
 /**
  * Class ItemController
@@ -18,7 +19,9 @@ class ItemController extends FOSRestController implements ClassResourceInterface
    */
   public function cgetAction()
   {
-    $data = ['item1', 'item2'];
+    $data = $this->getDoctrine()
+      ->getRepository(Item::class)
+      ->findAll();
         $view = $this->view($data, 200)
           ->setTemplate("AppBundle:Items:getItems.html.twig")
           ->setTemplateVar('items')
@@ -34,7 +37,9 @@ class ItemController extends FOSRestController implements ClassResourceInterface
    */
   public function getAction($id)
   {
-    $data = ['item1'];
+    $data = $this->getDoctrine()
+      ->getRepository(Item::class)
+      ->find($id);
     $view = $this->view($data, 200)
       ->setTemplate("AppBundle:Items:getItem.html.twig")
       ->setTemplateVar('item')
