@@ -21,7 +21,12 @@ class ItemController extends FOSRestController implements ClassResourceInterface
   {
     $data = $this->getDoctrine()
       ->getRepository(Item::class)
-      ->findAll();
+      ->findBy(
+        [],
+        [],
+        200,
+        0
+      );
         $view = $this->view($data, 200)
           ->setTemplate("AppBundle:Item:getItems.html.twig")
           ->setTemplateVar('items')
