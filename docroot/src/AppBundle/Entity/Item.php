@@ -16,7 +16,6 @@ class Item
      * @var string
      *
      * @ORM\Column(name="art_cda", type="string", length=30, nullable=true)
-     * @ORM\Id
      */
     private $artCda;
 
@@ -242,6 +241,7 @@ class Item
      *
      * @ORM\Column(name="art_barcode", type="string", length=30)
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $artBarcode;
 
