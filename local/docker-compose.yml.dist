@@ -12,7 +12,7 @@ services:
       - mailcatcher
       - pma
     volumes:
-      - "./../docroot:/var/www/html"
+      - "./../httpdocs:/var/www/html"
       - "./config/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
 
   mysql-server:

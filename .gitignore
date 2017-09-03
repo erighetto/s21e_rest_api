@@ -44,4 +44,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+# Local Stack
 /local/docker-compose.yml
+
+# Remote Stack
+/logs/*_log*
+/error_docs/*.html
