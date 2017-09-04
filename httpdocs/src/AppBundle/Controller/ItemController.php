@@ -7,8 +7,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 use AppBundle\Entity\Item;
 use Hateoas\Configuration\Route;
 use Hateoas\Representation\Factory\PagerfantaFactory;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -29,21 +27,21 @@ class ItemController extends FOSRestController implements ClassResourceInterface
 
     $limit = $request->query->getInt('limit', 10);
     $page = $request->query->getInt('page', 1);
+    $sorting = $request->query->get('sorting', array());
 
-    $queryBuilder = $this->getDoctrine()->getManager()->createQueryBuilder()
-      ->select('i')
-      ->from('AppBundle:Item', 'i');
-
-    $pagerAdapter = new DoctrineORMAdapter($queryBuilder);
-    $pager = new Pagerfanta($pagerAdapter);
-    $pager->setCurrentPage($page);
-    $pager->setMaxPerPage($limit);
+    $productsPager = $this->getDoctrine()->getManager()
+      ->getRepository('AppBundle:Item')
+      ->findAllPaginated($limit, $page, $sorting);
 
     $pagerFactory = new PagerfantaFactory();
 
     $data = $pagerFactory->createRepresentation(
-      $pager,
-      new Route('get_items', array('limit' => $limit, 'page' => $page))
+      $productsPager,
+      new Route('product_list', array(
+        'limit' => $limit,
+        'page' => $page,
+        'sorting' => $sorting
+      ))
     );
 
     $view = $this->view($data, 200)

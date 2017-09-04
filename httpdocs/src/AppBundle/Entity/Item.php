@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="articoli", indexes={@ORM\Index(name="TBLALIQUOTEIVATBLARTICOLI", columns={"art_codAliquota"}), @ORM\Index(name="TBLARTICOLICODARTICOLO", columns={"art_cda"}), @ORM\Index(name="TBLFAMIGLIETBLARTICOLI", columns={"art_codFam"}), @ORM\Index(name="TBLPLUGINTBLARTICOLI", columns={"art_idPlugin"}), @ORM\Index(name="TBLREPARTITBLARTICOLI", columns={"art_codRep"}), @ORM\Index(name="TBLSETTORITBLARTICOLI", columns={"art_codSettore"}), @ORM\Index(name="TBLUMTBLARTICOLI", columns={"art_codUm"}), @ORM\Index(name="FK_articoli_cluster_idx", columns={"art_cluster"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
  */
 class Item
 {
