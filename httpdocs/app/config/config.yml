@@ -74,13 +74,3 @@ swiftmailer:
 fos_rest:
     routing_loader:
         default_format: json
-
-# dimmir/paginator-bundle
-dmr_paginator:
-    items_per_page: 25                                  # default number items per page
-    max_items_per_page: ~                               # The maximum number of items per page.
-    page_request_parameter_name: page                   # The name of current page for query parameter
-    client_items_per_page: false                        # To allow the client to set the number of items per page.
-    items_per_page_request_parameter_name: itemsPerPage # The name of items per page query parameter
-    options:                                            # options fo Paginator
-        fetch_join_collection: true                     # The option fetchJoinCollection for Doctrine ORM Paginator
