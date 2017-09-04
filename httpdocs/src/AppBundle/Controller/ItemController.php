@@ -37,7 +37,7 @@ class ItemController extends FOSRestController implements ClassResourceInterface
 
     $data = $pagerFactory->createRepresentation(
       $productsPager,
-      new Route('product_list', array(
+      new Route('get_items', array(
         'limit' => $limit,
         'page' => $page,
         'sorting' => $sorting

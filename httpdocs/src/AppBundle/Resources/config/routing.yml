@@ -1,4 +1,3 @@
 items:
     type:     rest
-    host:     api.supergabry.it
     resource: AppBundle\Controller\ItemController
