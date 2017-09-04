@@ -2977,57 +2977,6 @@
     ],
     "packages-dev": [
         {
-            "name": "dimmir/paginator-bundle",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dimmir/PaginatorBundle.git",
-                "reference": "3f43a3fe647015aaee7bebfc8f9d0f28fa093b78"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dimmir/PaginatorBundle/zipball/3f43a3fe647015aaee7bebfc8f9d0f28fa093b78",
-                "reference": "3f43a3fe647015aaee7bebfc8f9d0f28fa093b78",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "^2.5",
-                "jms/serializer": "^1.7",
-                "php": ">=7.0",
-                "symfony/framework-bundle": "~3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "6.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DMR\\Bundle\\PaginatorBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dmitrii Petelin",
-                    "email": "petelindv@gmail.vom"
-                }
-            ],
-            "description": "Flexible pagination bundle for Symfony 3. Created for use on the REST API",
-            "keywords": [
-                "api",
-                "page",
-                "pager",
-                "pagination",
-                "paginator",
-                "rest",
-                "rest pagination"
-            ],
-            "time": "2017-05-22T05:08:23+00:00"
-        },
-        {
             "name": "sensio/generator-bundle",
             "version": "v3.1.6",
             "source": {
