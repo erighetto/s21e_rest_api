@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Item" table="tblarticolo">
+    <indexes>
+      <index name="TBLArticolo_TBLArticolo$TBLArticoloCodArt" columns="CodArt"/>
+      <index name="FK_TBLArticolo_TBLStatiArticoli" columns="flgStatoArticolo"/>
+      <index name="FK_TBLArticolo_TBLFamMerc" columns="CodFamMerc"/>
+      <index name="FK_TBLArticolo_TBLTipoEtichette" columns="CodTipoEtic"/>
+      <index name="FK_TBLArticolo_TBLRepartiECR" columns="CodRepECR"/>
+      <index name="FK_TBLArticolo_TBLUnitaMisura" columns="CodUmis"/>
+      <index name="FK_TBLArticolo_TBLInterlocutori" columns="CodFornitore"/>
+    </indexes>
+    <id name="codart" type="string" column="CodArt" length="20">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="codartforn" type="string" column="CodArtForn" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codfornitorecedi" type="string" column="CodFornitoreCEDI" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codrepbil" type="string" column="CodRepBIL" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codsottofam" type="string" column="CodSottoFam" length="6" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codfornitorealt" type="string" column="CodFornitoreAlt" length="30" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codaliq" type="string" column="CodAliq" length="6" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codtipoean" type="string" column="CodTipoEAN" length="6" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codbilancia" type="string" column="CodBilancia" length="6" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codbanco" type="string" column="CodBanco" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codagg" type="string" column="CodAgg" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descarticolo" type="string" column="DescArticolo" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descarticoloalt" type="string" column="DescArticoloAlt" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descarticoloecr" type="string" column="DescArticoloEcr" length="30" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="descarticolobil" type="string" column="DescArticoloBil" length="30" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="pxc" type="integer" column="PxC" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="cxc" type="integer" column="CxC" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="cxs" type="integer" column="CxS" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="qta" type="float" column="Qta" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="pesosgocciolato" type="float" column="PesoSgocciolato" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="sfrido" type="float" column="Sfrido" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="flgspedbil" type="string" column="flgSpedBil" length="1" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">N</option>
+      </options>
+    </field>
+    <field name="flgarttracc" type="string" column="flgArtTracc" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgassortimento" type="string" column="flgAssortimento" length="1" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">S</option>
+      </options>
+    </field>
+    <field name="flgvend" type="string" column="flgVend" length="1" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">S</option>
+      </options>
+    </field>
+    <field name="flgprintetic" type="string" column="flgPrintEtic" length="1" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">S</option>
+      </options>
+    </field>
+    <field name="flgvariaz" type="string" column="flgVariaz" length="1" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">S</option>
+      </options>
+    </field>
+    <field name="flgprovenienza" type="string" column="flgProvenienza" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgcalibro" type="string" column="flgCalibro" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="flgcategoria" type="string" column="flgCategoria" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="flgdatacreaz" type="string" column="flgDataCreaz" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgdataeliminaz" type="string" column="flgDataEliminaz" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgartto" type="string" column="flgArtTO" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgaspetto" type="string" column="flgAspetto" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idtipoarticolo" type="string" column="IDTipoArticolo" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgofferta" type="boolean" column="FlgOfferta" nullable="true"/>
+    <field name="codiceofferta" type="string" column="CodiceOfferta" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgmultiplo" type="integer" column="flgMultiplo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="flgdivulgataeliminaz" type="integer" column="flgDivulgataEliminaz" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="codfammerc" target-entity="Category" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodFamMerc" referenced-column-name="CodRep"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codfornitore" target-entity="Partner" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodFornitore" referenced-column-name="CodInt"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codrepecr" target-entity="Departement" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodRepECR" referenced-column-name="CodRep"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="flgstatoarticolo" target-entity="Status" fetch="LAZY">
+      <join-columns>
+        <join-column name="flgStatoArticolo" referenced-column-name="CodStato"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codtipoetic" target-entity="Label" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodTipoEtic" referenced-column-name="CodTipoEtic"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="codumis" target-entity="Unitmeasure" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodUmis" referenced-column-name="CodUmis"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="codlistino" target-entity="Pricelistinfo" inversed-by="codart" fetch="LAZY">
+      <join-table name="tbllistinovend">
+        <join-columns>
+          <join-column name="CodArt" referenced-column-name="CodArt"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="CodListino" referenced-column-name="CodListino"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

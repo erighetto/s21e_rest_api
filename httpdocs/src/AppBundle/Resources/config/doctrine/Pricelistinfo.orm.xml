@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Pricelistinfo" table="tblanaglistini">
+    <id name="codlistino" type="string" column="CodListino" length="20">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descrizione" type="string" column="Descrizione" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgdatainiziovalidita" type="datetime" column="FlgDataInizioValidita" nullable="false"/>
+    <field name="flgdatafinevalidita" type="datetime" column="FlgDataFineValidita" nullable="false"/>
+    <field name="flgdatainserimento" type="datetime" column="FlgDataInserimento" nullable="false"/>
+    <field name="flgdataeliminazione" type="datetime" column="FlgDataEliminazione" nullable="false"/>
+    <many-to-many field="codart" target-entity="Item" mapped-by="codlistino" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

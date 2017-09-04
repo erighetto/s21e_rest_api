@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Vat
  *
- * @ORM\Table(name="aliquoteiva")
+ * @ORM\Table(name="tblaliquoteiva")
  * @ORM\Entity
  */
 class Vat
@@ -15,40 +15,114 @@ class Vat
     /**
      * @var string
      *
-     * @ORM\Column(name="aliq_descrizione", type="string", length=100, nullable=true)
+     * @ORM\Column(name="DescAliquota", type="string", length=50, nullable=false)
      */
-    private $aliqDescrizione;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="aliq_valiva", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $aliqValiva;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="aliq_dataCreazione", type="datetime", nullable=true)
-     */
-    private $aliqDatacreazione;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="aliq_dataUltimaModifica", type="datetime", nullable=true)
-     */
-    private $aliqDataultimamodifica;
+    private $descaliquota;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="aliq_codaliqiva", type="integer")
+     * @ORM\Column(name="ValAliq", type="integer", nullable=false)
+     */
+    private $valaliq;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="FlgUltimaModifica", type="string", length=16, nullable=false)
+     */
+    private $flgultimamodifica;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="IDAliquota", type="string", length=6)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $aliqCodaliqiva;
+    private $idaliquota;
 
 
+
+    /**
+     * Set descaliquota
+     *
+     * @param string $descaliquota
+     *
+     * @return Vat
+     */
+    public function setDescaliquota($descaliquota)
+    {
+        $this->descaliquota = $descaliquota;
+
+        return $this;
+    }
+
+    /**
+     * Get descaliquota
+     *
+     * @return string
+     */
+    public function getDescaliquota()
+    {
+        return $this->descaliquota;
+    }
+
+    /**
+     * Set valaliq
+     *
+     * @param integer $valaliq
+     *
+     * @return Vat
+     */
+    public function setValaliq($valaliq)
+    {
+        $this->valaliq = $valaliq;
+
+        return $this;
+    }
+
+    /**
+     * Get valaliq
+     *
+     * @return integer
+     */
+    public function getValaliq()
+    {
+        return $this->valaliq;
+    }
+
+    /**
+     * Set flgultimamodifica
+     *
+     * @param string $flgultimamodifica
+     *
+     * @return Vat
+     */
+    public function setFlgultimamodifica($flgultimamodifica)
+    {
+        $this->flgultimamodifica = $flgultimamodifica;
+
+        return $this;
+    }
+
+    /**
+     * Get flgultimamodifica
+     *
+     * @return string
+     */
+    public function getFlgultimamodifica()
+    {
+        return $this->flgultimamodifica;
+    }
+
+    /**
+     * Get idaliquota
+     *
+     * @return string
+     */
+    public function getIdaliquota()
+    {
+        return $this->idaliquota;
+    }
 }
-

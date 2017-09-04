@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Ean" table="tblean">
+    <indexes>
+      <index name="FK_TBLEan_TBLArticolo" columns="CodArt"/>
+    </indexes>
+    <id name="codean" type="string" column="CodEAN" length="20">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="flgstatoean" type="string" column="flgStatoEAN" length="1" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">S</option>
+      </options>
+    </field>
+    <field name="flgdatainiziovalidità" type="string" column="flgDataInizioValidità" length="16" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgdatafinevalidità" type="string" column="flgDataFineValidità" length="16" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgdataeliminaz" type="string" column="flgDataEliminaz" length="16" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgdatains" type="string" column="flgDataIns" length="16" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="flgprimario" type="string" column="FlgPrimario" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="flgdivulgataeliminaz" type="integer" column="FlgDivulgataEliminaz" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="codart" target-entity="Item" fetch="LAZY">
+      <join-columns>
+        <join-column name="CodArt" referenced-column-name="CodArt"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -5,13 +5,20 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Departement
+ * Category
  *
- * @ORM\Table(name="tblrepartiecr")
+ * @ORM\Table(name="tblfammerc")
  * @ORM\Entity
  */
-class Departement
+class Category
 {
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodRepECR", type="string", length=50, nullable=true)
+     */
+    private $codrepecr;
+
     /**
      * @var string
      *
@@ -41,16 +48,23 @@ class Departement
     private $flgcategoriastatistica = 'S';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="flgTipoFront", type="string", length=50, nullable=true)
+     */
+    private $flgtipofront;
+
+    /**
      * @var integer
      *
-     * @ORM\Column(name="FlgAliqIVa", type="integer", nullable=true)
+     * @ORM\Column(name="FlgAliqIVA", type="integer", nullable=true)
      */
     private $flgaliqiva;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="CodRep", type="string", length=6)
+     * @ORM\Column(name="CodRep", type="string", length=50)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -59,11 +73,35 @@ class Departement
 
 
     /**
+     * Set codrepecr
+     *
+     * @param string $codrepecr
+     *
+     * @return Category
+     */
+    public function setCodrepecr($codrepecr)
+    {
+        $this->codrepecr = $codrepecr;
+
+        return $this;
+    }
+
+    /**
+     * Get codrepecr
+     *
+     * @return string
+     */
+    public function getCodrepecr()
+    {
+        return $this->codrepecr;
+    }
+
+    /**
      * Set descrep
      *
      * @param string $descrep
      *
-     * @return Departement
+     * @return Category
      */
     public function setDescrep($descrep)
     {
@@ -87,7 +125,7 @@ class Departement
      *
      * @param string $flgstato
      *
-     * @return Departement
+     * @return Category
      */
     public function setFlgstato($flgstato)
     {
@@ -111,7 +149,7 @@ class Departement
      *
      * @param string $flgdatacreaz
      *
-     * @return Departement
+     * @return Category
      */
     public function setFlgdatacreaz($flgdatacreaz)
     {
@@ -135,7 +173,7 @@ class Departement
      *
      * @param string $flgcategoriastatistica
      *
-     * @return Departement
+     * @return Category
      */
     public function setFlgcategoriastatistica($flgcategoriastatistica)
     {
@@ -155,11 +193,35 @@ class Departement
     }
 
     /**
+     * Set flgtipofront
+     *
+     * @param string $flgtipofront
+     *
+     * @return Category
+     */
+    public function setFlgtipofront($flgtipofront)
+    {
+        $this->flgtipofront = $flgtipofront;
+
+        return $this;
+    }
+
+    /**
+     * Get flgtipofront
+     *
+     * @return string
+     */
+    public function getFlgtipofront()
+    {
+        return $this->flgtipofront;
+    }
+
+    /**
      * Set flgaliqiva
      *
      * @param integer $flgaliqiva
      *
-     * @return Departement
+     * @return Category
      */
     public function setFlgaliqiva($flgaliqiva)
     {

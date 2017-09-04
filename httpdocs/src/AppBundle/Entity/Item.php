@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Item
  *
- * @ORM\Table(name="articoli", indexes={@ORM\Index(name="TBLALIQUOTEIVATBLARTICOLI", columns={"art_codAliquota"}), @ORM\Index(name="TBLARTICOLICODARTICOLO", columns={"art_cda"}), @ORM\Index(name="TBLFAMIGLIETBLARTICOLI", columns={"art_codFam"}), @ORM\Index(name="TBLPLUGINTBLARTICOLI", columns={"art_idPlugin"}), @ORM\Index(name="TBLREPARTITBLARTICOLI", columns={"art_codRep"}), @ORM\Index(name="TBLSETTORITBLARTICOLI", columns={"art_codSettore"}), @ORM\Index(name="TBLUMTBLARTICOLI", columns={"art_codUm"}), @ORM\Index(name="FK_articoli_cluster_idx", columns={"art_cluster"})})
+ * @ORM\Table(name="tblarticolo", indexes={@ORM\Index(name="TBLArticolo_TBLArticolo$TBLArticoloCodArt", columns={"CodArt"}), @ORM\Index(name="FK_TBLArticolo_TBLStatiArticoli", columns={"flgStatoArticolo"}), @ORM\Index(name="FK_TBLArticolo_TBLFamMerc", columns={"CodFamMerc"}), @ORM\Index(name="FK_TBLArticolo_TBLTipoEtichette", columns={"CodTipoEtic"}), @ORM\Index(name="FK_TBLArticolo_TBLRepartiECR", columns={"CodRepECR"}), @ORM\Index(name="FK_TBLArticolo_TBLUnitaMisura", columns={"CodUmis"}), @ORM\Index(name="FK_TBLArticolo_TBLInterlocutori", columns={"CodFornitore"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
  */
@@ -16,867 +16,1459 @@ class Item
     /**
      * @var string
      *
-     * @ORM\Column(name="art_cda", type="string", length=30, nullable=true)
+     * @ORM\Column(name="CodArtForn", type="string", length=50, nullable=true)
      */
-    private $artCda;
+    private $codartforn;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="art_flgstato", type="boolean", nullable=true)
+     * @ORM\Column(name="CodFornitoreCEDI", type="string", length=20, nullable=true)
      */
-    private $artFlgstato;
+    private $codfornitorecedi;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodRepBIL", type="string", length=10, nullable=true)
+     */
+    private $codrepbil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodSottoFam", type="string", length=6, nullable=true)
+     */
+    private $codsottofam;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodFornitoreAlt", type="string", length=30, nullable=true)
+     */
+    private $codfornitorealt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodAliq", type="string", length=6, nullable=false)
+     */
+    private $codaliq;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodTipoEAN", type="string", length=6, nullable=true)
+     */
+    private $codtipoean;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodBilancia", type="string", length=6, nullable=true)
+     */
+    private $codbilancia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodBanco", type="string", length=50, nullable=true)
+     */
+    private $codbanco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodAgg", type="string", length=10, nullable=true)
+     */
+    private $codagg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DescArticolo", type="string", length=100, nullable=false)
+     */
+    private $descarticolo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DescArticoloAlt", type="string", length=100, nullable=true)
+     */
+    private $descarticoloalt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DescArticoloEcr", type="string", length=30, nullable=true)
+     */
+    private $descarticoloecr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DescArticoloBil", type="string", length=30, nullable=true)
+     */
+    private $descarticolobil;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="art_tipoArticolo", type="integer", nullable=false)
+     * @ORM\Column(name="PxC", type="integer", nullable=true)
      */
-    private $artTipoarticolo = '0';
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_descEstesa", type="string", length=50, nullable=true)
-     */
-    private $artDescestesa;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_descScontrino", type="string", length=42, nullable=true)
-     */
-    private $artDescscontrino;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_przObbligato", type="boolean", nullable=false)
-     */
-    private $artPrzobbligato;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przVen", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzven;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przAlt01", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzalt01;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przAlt02", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzalt02;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przAlt03", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzalt03;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przAlt04", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzalt04;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_przAlt05", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artPrzalt05;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_valMax", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artValmax;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="art_valMin", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $artValmin;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_qtaObbligata", type="boolean", nullable=true)
-     */
-    private $artQtaobbligata;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_ctrlReso", type="boolean", nullable=false)
-     */
-    private $artCtrlreso;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_sctSubtotale", type="boolean", nullable=false)
-     */
-    private $artSctsubtotale;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_sctProdotto", type="boolean", nullable=false)
-     */
-    private $artSctprodotto;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_editingPrzArticolo", type="boolean", nullable=false)
-     */
-    private $artEditingprzarticolo;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_finalizzaScontrino", type="boolean", nullable=false)
-     */
-    private $artFinalizzascontrino;
+    private $pxc;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="art_tipoMoltiplicatori", type="integer", nullable=true)
+     * @ORM\Column(name="CxC", type="integer", nullable=true)
      */
-    private $artTipomoltiplicatori;
+    private $cxc = '0';
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="art_tipoEan", type="integer", nullable=true)
+     * @ORM\Column(name="CxS", type="integer", nullable=true)
      */
-    private $artTipoean;
+    private $cxs = '0';
 
     /**
-     * @var boolean
+     * @var float
      *
-     * @ORM\Column(name="art_eseguePlugin", type="boolean", nullable=false)
+     * @ORM\Column(name="Qta", type="float", precision=10, scale=0, nullable=true)
      */
-    private $artEsegueplugin;
+    private $qta = '0';
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="art_numDecimali", type="integer", nullable=true)
+     * @ORM\Column(name="PesoSgocciolato", type="float", precision=10, scale=0, nullable=true)
      */
-    private $artNumdecimali;
+    private $pesosgocciolato = '0';
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="art_tipoVendita", type="integer", nullable=true)
+     * @ORM\Column(name="Sfrido", type="float", precision=10, scale=0, nullable=true)
      */
-    private $artTipovendita;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="art_numMoltiplicatori", type="integer", nullable=true)
-     */
-    private $artNummoltiplicatori;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="art_resaBollini", type="integer", nullable=true)
-     */
-    private $artResabollini = '0';
+    private $sfrido = '0';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="art_contenuto", type="decimal", precision=10, scale=3, nullable=false)
+     * @ORM\Column(name="flgSpedBil", type="string", length=1, nullable=true)
      */
-    private $artContenuto = '0.000';
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="art_gestioneLotto", type="boolean", nullable=false)
-     */
-    private $artGestionelotto = '0';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="art_dataCreazione", type="datetime", nullable=true)
-     */
-    private $artDatacreazione;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="art_dataUltimaModifica", type="datetime", nullable=true)
-     */
-    private $artDataultimamodifica;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="art_dataVariazione", type="datetime", nullable=true)
-     */
-    private $artDatavariazione;
+    private $flgspedbil = 'N';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="art_barcode", type="string", length=30)
+     * @ORM\Column(name="flgArtTracc", type="string", length=50, nullable=true)
+     */
+    private $flgarttracc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgAssortimento", type="string", length=1, nullable=false)
+     */
+    private $flgassortimento = 'S';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgVend", type="string", length=1, nullable=false)
+     */
+    private $flgvend = 'S';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgPrintEtic", type="string", length=1, nullable=false)
+     */
+    private $flgprintetic = 'S';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgVariaz", type="string", length=1, nullable=false)
+     */
+    private $flgvariaz = 'S';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgProvenienza", type="string", length=50, nullable=true)
+     */
+    private $flgprovenienza;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgCalibro", type="string", length=50, nullable=true)
+     */
+    private $flgcalibro = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgCategoria", type="string", length=50, nullable=true)
+     */
+    private $flgcategoria = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=true)
+     */
+    private $flgdatacreaz;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgDataEliminaz", type="string", length=50, nullable=true)
+     */
+    private $flgdataeliminaz;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgArtTO", type="string", length=50, nullable=true)
+     */
+    private $flgartto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="flgAspetto", type="string", length=5, nullable=true)
+     */
+    private $flgaspetto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="IDTipoArticolo", type="string", length=5, nullable=true)
+     */
+    private $idtipoarticolo;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="FlgOfferta", type="boolean", nullable=true)
+     */
+    private $flgofferta;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodiceOfferta", type="string", length=20, nullable=true)
+     */
+    private $codiceofferta;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="flgMultiplo", type="integer", nullable=true)
+     */
+    private $flgmultiplo = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="flgDivulgataEliminaz", type="integer", nullable=true)
+     */
+    private $flgdivulgataeliminaz;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodArt", type="string", length=20)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $artBarcode;
+    private $codart;
 
     /**
-     * @var \AppBundle\Entity\Vat
+     * @var \AppBundle\Entity\Category
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Vat")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_codAliquota", referencedColumnName="aliq_codaliqiva")
+     *   @ORM\JoinColumn(name="CodFamMerc", referencedColumnName="CodRep")
      * })
      */
-    private $artCodaliquota;
+    private $codfammerc;
 
     /**
-     * @var \AppBundle\Entity\Cluster
+     * @var \AppBundle\Entity\Partner
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cluster")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Partner")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_cluster", referencedColumnName="clu_idCluster")
+     *   @ORM\JoinColumn(name="CodFornitore", referencedColumnName="CodInt")
      * })
      */
-    private $artCluster;
-
-    /**
-     * @var \AppBundle\Entity\Family
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Family")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_codFam", referencedColumnName="fam_codfam")
-     * })
-     */
-    private $artCodfam;
-
-    /**
-     * @var \AppBundle\Entity\Posplugin
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Posplugin")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_idPlugin", referencedColumnName="ppl_codPlugin")
-     * })
-     */
-    private $artplugin;
+    private $codfornitore;
 
     /**
      * @var \AppBundle\Entity\Departement
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Departement")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_codRep", referencedColumnName="rep_codrep")
+     *   @ORM\JoinColumn(name="CodRepECR", referencedColumnName="CodRep")
      * })
      */
-    private $artCodrep;
+    private $codrepecr;
 
     /**
-     * @var \AppBundle\Entity\Section
+     * @var \AppBundle\Entity\Status
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Section")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Status")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_codSettore", referencedColumnName="set_codSettore")
+     *   @ORM\JoinColumn(name="flgStatoArticolo", referencedColumnName="CodStato")
      * })
      */
-    private $artCodsettore;
+    private $flgstatoarticolo;
 
     /**
-     * @var \AppBundle\Entity\Measureunit
+     * @var \AppBundle\Entity\Label
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Measureunit")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Label")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_codUm", referencedColumnName="um_codUm")
+     *   @ORM\JoinColumn(name="CodTipoEtic", referencedColumnName="CodTipoEtic")
      * })
      */
-    private $artCodum;
-
-  /**
-   * @return mixed
-   */
-  public function getArtCda() {
-    return $this->artCda;
-  }
-
-  /**
-   * @param mixed $artCda
-   */
-  public function setArtCda($artCda) {
-    $this->artCda = $artCda;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtFlgstato(): bool {
-    return $this->artFlgstato;
-  }
-
-  /**
-   * @param bool $artFlgstato
-   */
-  public function setArtFlgstato(bool $artFlgstato) {
-    $this->artFlgstato = $artFlgstato;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtTipoarticolo(): int {
-    return $this->artTipoarticolo;
-  }
-
-  /**
-   * @param int $artTipoarticolo
-   */
-  public function setArtTipoarticolo(int $artTipoarticolo) {
-    $this->artTipoarticolo = $artTipoarticolo;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtDescestesa(): string {
-    return $this->artDescestesa;
-  }
-
-  /**
-   * @param string $artDescestesa
-   */
-  public function setArtDescestesa(string $artDescestesa) {
-    $this->artDescestesa = $artDescestesa;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtDescscontrino(): string {
-    return $this->artDescscontrino;
-  }
-
-  /**
-   * @param string $artDescscontrino
-   */
-  public function setArtDescscontrino(string $artDescscontrino) {
-    $this->artDescscontrino = $artDescscontrino;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtPrzobbligato(): bool {
-    return $this->artPrzobbligato;
-  }
-
-  /**
-   * @param bool $artPrzobbligato
-   */
-  public function setArtPrzobbligato(bool $artPrzobbligato) {
-    $this->artPrzobbligato = $artPrzobbligato;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzven(): string {
-    return $this->artPrzven;
-  }
-
-  /**
-   * @param string $artPrzven
-   */
-  public function setArtPrzven(string $artPrzven) {
-    $this->artPrzven = $artPrzven;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzalt01(): string {
-    return $this->artPrzalt01;
-  }
-
-  /**
-   * @param string $artPrzalt01
-   */
-  public function setArtPrzalt01(string $artPrzalt01) {
-    $this->artPrzalt01 = $artPrzalt01;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzalt02(): string {
-    return $this->artPrzalt02;
-  }
-
-  /**
-   * @param string $artPrzalt02
-   */
-  public function setArtPrzalt02(string $artPrzalt02) {
-    $this->artPrzalt02 = $artPrzalt02;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzalt03(): string {
-    return $this->artPrzalt03;
-  }
-
-  /**
-   * @param string $artPrzalt03
-   */
-  public function setArtPrzalt03(string $artPrzalt03) {
-    $this->artPrzalt03 = $artPrzalt03;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzalt04(): string {
-    return $this->artPrzalt04;
-  }
-
-  /**
-   * @param string $artPrzalt04
-   */
-  public function setArtPrzalt04(string $artPrzalt04) {
-    $this->artPrzalt04 = $artPrzalt04;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtPrzalt05(): string {
-    return $this->artPrzalt05;
-  }
-
-  /**
-   * @param string $artPrzalt05
-   */
-  public function setArtPrzalt05(string $artPrzalt05) {
-    $this->artPrzalt05 = $artPrzalt05;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtValmax(): string {
-    return $this->artValmax;
-  }
-
-  /**
-   * @param string $artValmax
-   */
-  public function setArtValmax(string $artValmax) {
-    $this->artValmax = $artValmax;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtValmin(): string {
-    return $this->artValmin;
-  }
-
-  /**
-   * @param string $artValmin
-   */
-  public function setArtValmin(string $artValmin) {
-    $this->artValmin = $artValmin;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtQtaobbligata(): bool {
-    return $this->artQtaobbligata;
-  }
-
-  /**
-   * @param bool $artQtaobbligata
-   */
-  public function setArtQtaobbligata(bool $artQtaobbligata) {
-    $this->artQtaobbligata = $artQtaobbligata;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtCtrlreso(): bool {
-    return $this->artCtrlreso;
-  }
-
-  /**
-   * @param bool $artCtrlreso
-   */
-  public function setArtCtrlreso(bool $artCtrlreso) {
-    $this->artCtrlreso = $artCtrlreso;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtSctsubtotale(): bool {
-    return $this->artSctsubtotale;
-  }
-
-  /**
-   * @param bool $artSctsubtotale
-   */
-  public function setArtSctsubtotale(bool $artSctsubtotale) {
-    $this->artSctsubtotale = $artSctsubtotale;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtSctprodotto(): bool {
-    return $this->artSctprodotto;
-  }
-
-  /**
-   * @param bool $artSctprodotto
-   */
-  public function setArtSctprodotto(bool $artSctprodotto) {
-    $this->artSctprodotto = $artSctprodotto;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtEditingprzarticolo(): bool {
-    return $this->artEditingprzarticolo;
-  }
-
-  /**
-   * @param bool $artEditingprzarticolo
-   */
-  public function setArtEditingprzarticolo(bool $artEditingprzarticolo) {
-    $this->artEditingprzarticolo = $artEditingprzarticolo;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtFinalizzascontrino(): bool {
-    return $this->artFinalizzascontrino;
-  }
-
-  /**
-   * @param bool $artFinalizzascontrino
-   */
-  public function setArtFinalizzascontrino(bool $artFinalizzascontrino) {
-    $this->artFinalizzascontrino = $artFinalizzascontrino;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtTipomoltiplicatori(): int {
-    return $this->artTipomoltiplicatori;
-  }
-
-  /**
-   * @param int $artTipomoltiplicatori
-   */
-  public function setArtTipomoltiplicatori(int $artTipomoltiplicatori) {
-    $this->artTipomoltiplicatori = $artTipomoltiplicatori;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtTipoean(): int {
-    return $this->artTipoean;
-  }
-
-  /**
-   * @param int $artTipoean
-   */
-  public function setArtTipoean(int $artTipoean) {
-    $this->artTipoean = $artTipoean;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtEsegueplugin(): bool {
-    return $this->artEsegueplugin;
-  }
-
-  /**
-   * @param bool $artEsegueplugin
-   */
-  public function setArtEsegueplugin(bool $artEsegueplugin) {
-    $this->artEsegueplugin = $artEsegueplugin;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtNumdecimali(): int {
-    return $this->artNumdecimali;
-  }
-
-  /**
-   * @param int $artNumdecimali
-   */
-  public function setArtNumdecimali(int $artNumdecimali) {
-    $this->artNumdecimali = $artNumdecimali;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtTipovendita(): int {
-    return $this->artTipovendita;
-  }
-
-  /**
-   * @param int $artTipovendita
-   */
-  public function setArtTipovendita(int $artTipovendita) {
-    $this->artTipovendita = $artTipovendita;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtNummoltiplicatori(): int {
-    return $this->artNummoltiplicatori;
-  }
-
-  /**
-   * @param int $artNummoltiplicatori
-   */
-  public function setArtNummoltiplicatori(int $artNummoltiplicatori) {
-    $this->artNummoltiplicatori = $artNummoltiplicatori;
-  }
-
-  /**
-   * @return int
-   */
-  public function getArtResabollini(): int {
-    return $this->artResabollini;
-  }
-
-  /**
-   * @param int $artResabollini
-   */
-  public function setArtResabollini(int $artResabollini) {
-    $this->artResabollini = $artResabollini;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtContenuto(): string {
-    return $this->artContenuto;
-  }
-
-  /**
-   * @param string $artContenuto
-   */
-  public function setArtContenuto(string $artContenuto) {
-    $this->artContenuto = $artContenuto;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isArtGestionelotto(): bool {
-    return $this->artGestionelotto;
-  }
-
-  /**
-   * @param bool $artGestionelotto
-   */
-  public function setArtGestionelotto(bool $artGestionelotto) {
-    $this->artGestionelotto = $artGestionelotto;
-  }
-
-  /**
-   * @return \DateTime
-   */
-  public function getArtDatacreazione(): \DateTime {
-    return $this->artDatacreazione;
-  }
-
-  /**
-   * @param \DateTime $artDatacreazione
-   */
-  public function setArtDatacreazione(\DateTime $artDatacreazione) {
-    $this->artDatacreazione = $artDatacreazione;
-  }
-
-  /**
-   * @return \DateTime
-   */
-  public function getArtDataultimamodifica(): \DateTime {
-    return $this->artDataultimamodifica;
-  }
-
-  /**
-   * @param \DateTime $artDataultimamodifica
-   */
-  public function setArtDataultimamodifica(\DateTime $artDataultimamodifica) {
-    $this->artDataultimamodifica = $artDataultimamodifica;
-  }
-
-  /**
-   * @return \DateTime
-   */
-  public function getArtDatavariazione(): \DateTime {
-    return $this->artDatavariazione;
-  }
-
-  /**
-   * @param \DateTime $artDatavariazione
-   */
-  public function setArtDatavariazione(\DateTime $artDatavariazione) {
-    $this->artDatavariazione = $artDatavariazione;
-  }
-
-  /**
-   * @return string
-   */
-  public function getArtBarcode(): string {
-    return $this->artBarcode;
-  }
-
-  /**
-   * @param string $artBarcode
-   */
-  public function setArtBarcode(string $artBarcode) {
-    $this->artBarcode = $artBarcode;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Vat
-   */
-  public function getArtCodaliquota(): \AppBundle\Entity\Vat {
-    return $this->artCodaliquota;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Vat $artCodaliquota
-   */
-  public function setArtCodaliquota(\AppBundle\Entity\Vat $artCodaliquota) {
-    $this->artCodaliquota = $artCodaliquota;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Cluster
-   */
-  public function getArtCluster(): \AppBundle\Entity\Cluster {
-    return $this->artCluster;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Cluster $artCluster
-   */
-  public function setArtCluster(\AppBundle\Entity\Cluster $artCluster) {
-    $this->artCluster = $artCluster;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Family
-   */
-  public function getArtCodfam(): \AppBundle\Entity\Family {
-    return $this->artCodfam;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Family $artCodfam
-   */
-  public function setArtCodfam(\AppBundle\Entity\Family $artCodfam) {
-    $this->artCodfam = $artCodfam;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Posplugin
-   */
-  public function getArtplugin(): \AppBundle\Entity\Posplugin {
-    return $this->artplugin;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Posplugin $artplugin
-   */
-  public function setArtplugin(\AppBundle\Entity\Posplugin $artplugin) {
-    $this->artplugin = $artplugin;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Departement
-   */
-  public function getArtCodrep(): \AppBundle\Entity\Departement {
-    return $this->artCodrep;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Departement $artCodrep
-   */
-  public function setArtCodrep(\AppBundle\Entity\Departement $artCodrep) {
-    $this->artCodrep = $artCodrep;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Section
-   */
-  public function getArtCodsettore(): \AppBundle\Entity\Section {
-    return $this->artCodsettore;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Section $artCodsettore
-   */
-  public function setArtCodsettore(\AppBundle\Entity\Section $artCodsettore) {
-    $this->artCodsettore = $artCodsettore;
-  }
-
-  /**
-   * @return \AppBundle\Entity\Measureunit
-   */
-  public function getArtCodum(): \AppBundle\Entity\Measureunit {
-    return $this->artCodum;
-  }
-
-  /**
-   * @param \AppBundle\Entity\Measureunit $artCodum
-   */
-  public function setArtCodum(\AppBundle\Entity\Measureunit $artCodum) {
-    $this->artCodum = $artCodum;
-  }
-
-
-
+    private $codtipoetic;
+
+    /**
+     * @var \AppBundle\Entity\Unitmeasure
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unitmeasure")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="CodUmis", referencedColumnName="CodUmis")
+     * })
+     */
+    private $codumis;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Pricelistinfo", inversedBy="codart")
+     * @ORM\JoinTable(name="tbllistinovend",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="CodArt", referencedColumnName="CodArt")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="CodListino", referencedColumnName="CodListino")
+     *   }
+     * )
+     */
+    private $codlistino;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->codlistino = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Set codartforn
+     *
+     * @param string $codartforn
+     *
+     * @return Item
+     */
+    public function setCodartforn($codartforn)
+    {
+        $this->codartforn = $codartforn;
+
+        return $this;
+    }
+
+    /**
+     * Get codartforn
+     *
+     * @return string
+     */
+    public function getCodartforn()
+    {
+        return $this->codartforn;
+    }
+
+    /**
+     * Set codfornitorecedi
+     *
+     * @param string $codfornitorecedi
+     *
+     * @return Item
+     */
+    public function setCodfornitorecedi($codfornitorecedi)
+    {
+        $this->codfornitorecedi = $codfornitorecedi;
+
+        return $this;
+    }
+
+    /**
+     * Get codfornitorecedi
+     *
+     * @return string
+     */
+    public function getCodfornitorecedi()
+    {
+        return $this->codfornitorecedi;
+    }
+
+    /**
+     * Set codrepbil
+     *
+     * @param string $codrepbil
+     *
+     * @return Item
+     */
+    public function setCodrepbil($codrepbil)
+    {
+        $this->codrepbil = $codrepbil;
+
+        return $this;
+    }
+
+    /**
+     * Get codrepbil
+     *
+     * @return string
+     */
+    public function getCodrepbil()
+    {
+        return $this->codrepbil;
+    }
+
+    /**
+     * Set codsottofam
+     *
+     * @param string $codsottofam
+     *
+     * @return Item
+     */
+    public function setCodsottofam($codsottofam)
+    {
+        $this->codsottofam = $codsottofam;
+
+        return $this;
+    }
+
+    /**
+     * Get codsottofam
+     *
+     * @return string
+     */
+    public function getCodsottofam()
+    {
+        return $this->codsottofam;
+    }
+
+    /**
+     * Set codfornitorealt
+     *
+     * @param string $codfornitorealt
+     *
+     * @return Item
+     */
+    public function setCodfornitorealt($codfornitorealt)
+    {
+        $this->codfornitorealt = $codfornitorealt;
+
+        return $this;
+    }
+
+    /**
+     * Get codfornitorealt
+     *
+     * @return string
+     */
+    public function getCodfornitorealt()
+    {
+        return $this->codfornitorealt;
+    }
+
+    /**
+     * Set codaliq
+     *
+     * @param string $codaliq
+     *
+     * @return Item
+     */
+    public function setCodaliq($codaliq)
+    {
+        $this->codaliq = $codaliq;
+
+        return $this;
+    }
+
+    /**
+     * Get codaliq
+     *
+     * @return string
+     */
+    public function getCodaliq()
+    {
+        return $this->codaliq;
+    }
+
+    /**
+     * Set codtipoean
+     *
+     * @param string $codtipoean
+     *
+     * @return Item
+     */
+    public function setCodtipoean($codtipoean)
+    {
+        $this->codtipoean = $codtipoean;
+
+        return $this;
+    }
+
+    /**
+     * Get codtipoean
+     *
+     * @return string
+     */
+    public function getCodtipoean()
+    {
+        return $this->codtipoean;
+    }
+
+    /**
+     * Set codbilancia
+     *
+     * @param string $codbilancia
+     *
+     * @return Item
+     */
+    public function setCodbilancia($codbilancia)
+    {
+        $this->codbilancia = $codbilancia;
+
+        return $this;
+    }
+
+    /**
+     * Get codbilancia
+     *
+     * @return string
+     */
+    public function getCodbilancia()
+    {
+        return $this->codbilancia;
+    }
+
+    /**
+     * Set codbanco
+     *
+     * @param string $codbanco
+     *
+     * @return Item
+     */
+    public function setCodbanco($codbanco)
+    {
+        $this->codbanco = $codbanco;
+
+        return $this;
+    }
+
+    /**
+     * Get codbanco
+     *
+     * @return string
+     */
+    public function getCodbanco()
+    {
+        return $this->codbanco;
+    }
+
+    /**
+     * Set codagg
+     *
+     * @param string $codagg
+     *
+     * @return Item
+     */
+    public function setCodagg($codagg)
+    {
+        $this->codagg = $codagg;
+
+        return $this;
+    }
+
+    /**
+     * Get codagg
+     *
+     * @return string
+     */
+    public function getCodagg()
+    {
+        return $this->codagg;
+    }
+
+    /**
+     * Set descarticolo
+     *
+     * @param string $descarticolo
+     *
+     * @return Item
+     */
+    public function setDescarticolo($descarticolo)
+    {
+        $this->descarticolo = $descarticolo;
+
+        return $this;
+    }
+
+    /**
+     * Get descarticolo
+     *
+     * @return string
+     */
+    public function getDescarticolo()
+    {
+        return $this->descarticolo;
+    }
+
+    /**
+     * Set descarticoloalt
+     *
+     * @param string $descarticoloalt
+     *
+     * @return Item
+     */
+    public function setDescarticoloalt($descarticoloalt)
+    {
+        $this->descarticoloalt = $descarticoloalt;
+
+        return $this;
+    }
+
+    /**
+     * Get descarticoloalt
+     *
+     * @return string
+     */
+    public function getDescarticoloalt()
+    {
+        return $this->descarticoloalt;
+    }
+
+    /**
+     * Set descarticoloecr
+     *
+     * @param string $descarticoloecr
+     *
+     * @return Item
+     */
+    public function setDescarticoloecr($descarticoloecr)
+    {
+        $this->descarticoloecr = $descarticoloecr;
+
+        return $this;
+    }
+
+    /**
+     * Get descarticoloecr
+     *
+     * @return string
+     */
+    public function getDescarticoloecr()
+    {
+        return $this->descarticoloecr;
+    }
+
+    /**
+     * Set descarticolobil
+     *
+     * @param string $descarticolobil
+     *
+     * @return Item
+     */
+    public function setDescarticolobil($descarticolobil)
+    {
+        $this->descarticolobil = $descarticolobil;
+
+        return $this;
+    }
+
+    /**
+     * Get descarticolobil
+     *
+     * @return string
+     */
+    public function getDescarticolobil()
+    {
+        return $this->descarticolobil;
+    }
+
+    /**
+     * Set pxc
+     *
+     * @param integer $pxc
+     *
+     * @return Item
+     */
+    public function setPxc($pxc)
+    {
+        $this->pxc = $pxc;
+
+        return $this;
+    }
+
+    /**
+     * Get pxc
+     *
+     * @return integer
+     */
+    public function getPxc()
+    {
+        return $this->pxc;
+    }
+
+    /**
+     * Set cxc
+     *
+     * @param integer $cxc
+     *
+     * @return Item
+     */
+    public function setCxc($cxc)
+    {
+        $this->cxc = $cxc;
+
+        return $this;
+    }
+
+    /**
+     * Get cxc
+     *
+     * @return integer
+     */
+    public function getCxc()
+    {
+        return $this->cxc;
+    }
+
+    /**
+     * Set cxs
+     *
+     * @param integer $cxs
+     *
+     * @return Item
+     */
+    public function setCxs($cxs)
+    {
+        $this->cxs = $cxs;
+
+        return $this;
+    }
+
+    /**
+     * Get cxs
+     *
+     * @return integer
+     */
+    public function getCxs()
+    {
+        return $this->cxs;
+    }
+
+    /**
+     * Set qta
+     *
+     * @param float $qta
+     *
+     * @return Item
+     */
+    public function setQta($qta)
+    {
+        $this->qta = $qta;
+
+        return $this;
+    }
+
+    /**
+     * Get qta
+     *
+     * @return float
+     */
+    public function getQta()
+    {
+        return $this->qta;
+    }
+
+    /**
+     * Set pesosgocciolato
+     *
+     * @param float $pesosgocciolato
+     *
+     * @return Item
+     */
+    public function setPesosgocciolato($pesosgocciolato)
+    {
+        $this->pesosgocciolato = $pesosgocciolato;
+
+        return $this;
+    }
+
+    /**
+     * Get pesosgocciolato
+     *
+     * @return float
+     */
+    public function getPesosgocciolato()
+    {
+        return $this->pesosgocciolato;
+    }
+
+    /**
+     * Set sfrido
+     *
+     * @param float $sfrido
+     *
+     * @return Item
+     */
+    public function setSfrido($sfrido)
+    {
+        $this->sfrido = $sfrido;
+
+        return $this;
+    }
+
+    /**
+     * Get sfrido
+     *
+     * @return float
+     */
+    public function getSfrido()
+    {
+        return $this->sfrido;
+    }
+
+    /**
+     * Set flgspedbil
+     *
+     * @param string $flgspedbil
+     *
+     * @return Item
+     */
+    public function setFlgspedbil($flgspedbil)
+    {
+        $this->flgspedbil = $flgspedbil;
+
+        return $this;
+    }
+
+    /**
+     * Get flgspedbil
+     *
+     * @return string
+     */
+    public function getFlgspedbil()
+    {
+        return $this->flgspedbil;
+    }
+
+    /**
+     * Set flgarttracc
+     *
+     * @param string $flgarttracc
+     *
+     * @return Item
+     */
+    public function setFlgarttracc($flgarttracc)
+    {
+        $this->flgarttracc = $flgarttracc;
+
+        return $this;
+    }
+
+    /**
+     * Get flgarttracc
+     *
+     * @return string
+     */
+    public function getFlgarttracc()
+    {
+        return $this->flgarttracc;
+    }
+
+    /**
+     * Set flgassortimento
+     *
+     * @param string $flgassortimento
+     *
+     * @return Item
+     */
+    public function setFlgassortimento($flgassortimento)
+    {
+        $this->flgassortimento = $flgassortimento;
+
+        return $this;
+    }
+
+    /**
+     * Get flgassortimento
+     *
+     * @return string
+     */
+    public function getFlgassortimento()
+    {
+        return $this->flgassortimento;
+    }
+
+    /**
+     * Set flgvend
+     *
+     * @param string $flgvend
+     *
+     * @return Item
+     */
+    public function setFlgvend($flgvend)
+    {
+        $this->flgvend = $flgvend;
+
+        return $this;
+    }
+
+    /**
+     * Get flgvend
+     *
+     * @return string
+     */
+    public function getFlgvend()
+    {
+        return $this->flgvend;
+    }
+
+    /**
+     * Set flgprintetic
+     *
+     * @param string $flgprintetic
+     *
+     * @return Item
+     */
+    public function setFlgprintetic($flgprintetic)
+    {
+        $this->flgprintetic = $flgprintetic;
+
+        return $this;
+    }
+
+    /**
+     * Get flgprintetic
+     *
+     * @return string
+     */
+    public function getFlgprintetic()
+    {
+        return $this->flgprintetic;
+    }
+
+    /**
+     * Set flgvariaz
+     *
+     * @param string $flgvariaz
+     *
+     * @return Item
+     */
+    public function setFlgvariaz($flgvariaz)
+    {
+        $this->flgvariaz = $flgvariaz;
+
+        return $this;
+    }
+
+    /**
+     * Get flgvariaz
+     *
+     * @return string
+     */
+    public function getFlgvariaz()
+    {
+        return $this->flgvariaz;
+    }
+
+    /**
+     * Set flgprovenienza
+     *
+     * @param string $flgprovenienza
+     *
+     * @return Item
+     */
+    public function setFlgprovenienza($flgprovenienza)
+    {
+        $this->flgprovenienza = $flgprovenienza;
+
+        return $this;
+    }
+
+    /**
+     * Get flgprovenienza
+     *
+     * @return string
+     */
+    public function getFlgprovenienza()
+    {
+        return $this->flgprovenienza;
+    }
+
+    /**
+     * Set flgcalibro
+     *
+     * @param string $flgcalibro
+     *
+     * @return Item
+     */
+    public function setFlgcalibro($flgcalibro)
+    {
+        $this->flgcalibro = $flgcalibro;
+
+        return $this;
+    }
+
+    /**
+     * Get flgcalibro
+     *
+     * @return string
+     */
+    public function getFlgcalibro()
+    {
+        return $this->flgcalibro;
+    }
+
+    /**
+     * Set flgcategoria
+     *
+     * @param string $flgcategoria
+     *
+     * @return Item
+     */
+    public function setFlgcategoria($flgcategoria)
+    {
+        $this->flgcategoria = $flgcategoria;
+
+        return $this;
+    }
+
+    /**
+     * Get flgcategoria
+     *
+     * @return string
+     */
+    public function getFlgcategoria()
+    {
+        return $this->flgcategoria;
+    }
+
+    /**
+     * Set flgdatacreaz
+     *
+     * @param string $flgdatacreaz
+     *
+     * @return Item
+     */
+    public function setFlgdatacreaz($flgdatacreaz)
+    {
+        $this->flgdatacreaz = $flgdatacreaz;
+
+        return $this;
+    }
+
+    /**
+     * Get flgdatacreaz
+     *
+     * @return string
+     */
+    public function getFlgdatacreaz()
+    {
+        return $this->flgdatacreaz;
+    }
+
+    /**
+     * Set flgdataeliminaz
+     *
+     * @param string $flgdataeliminaz
+     *
+     * @return Item
+     */
+    public function setFlgdataeliminaz($flgdataeliminaz)
+    {
+        $this->flgdataeliminaz = $flgdataeliminaz;
+
+        return $this;
+    }
+
+    /**
+     * Get flgdataeliminaz
+     *
+     * @return string
+     */
+    public function getFlgdataeliminaz()
+    {
+        return $this->flgdataeliminaz;
+    }
+
+    /**
+     * Set flgartto
+     *
+     * @param string $flgartto
+     *
+     * @return Item
+     */
+    public function setFlgartto($flgartto)
+    {
+        $this->flgartto = $flgartto;
+
+        return $this;
+    }
+
+    /**
+     * Get flgartto
+     *
+     * @return string
+     */
+    public function getFlgartto()
+    {
+        return $this->flgartto;
+    }
+
+    /**
+     * Set flgaspetto
+     *
+     * @param string $flgaspetto
+     *
+     * @return Item
+     */
+    public function setFlgaspetto($flgaspetto)
+    {
+        $this->flgaspetto = $flgaspetto;
+
+        return $this;
+    }
+
+    /**
+     * Get flgaspetto
+     *
+     * @return string
+     */
+    public function getFlgaspetto()
+    {
+        return $this->flgaspetto;
+    }
+
+    /**
+     * Set idtipoarticolo
+     *
+     * @param string $idtipoarticolo
+     *
+     * @return Item
+     */
+    public function setIdtipoarticolo($idtipoarticolo)
+    {
+        $this->idtipoarticolo = $idtipoarticolo;
+
+        return $this;
+    }
+
+    /**
+     * Get idtipoarticolo
+     *
+     * @return string
+     */
+    public function getIdtipoarticolo()
+    {
+        return $this->idtipoarticolo;
+    }
+
+    /**
+     * Set flgofferta
+     *
+     * @param boolean $flgofferta
+     *
+     * @return Item
+     */
+    public function setFlgofferta($flgofferta)
+    {
+        $this->flgofferta = $flgofferta;
+
+        return $this;
+    }
+
+    /**
+     * Get flgofferta
+     *
+     * @return boolean
+     */
+    public function getFlgofferta()
+    {
+        return $this->flgofferta;
+    }
+
+    /**
+     * Set codiceofferta
+     *
+     * @param string $codiceofferta
+     *
+     * @return Item
+     */
+    public function setCodiceofferta($codiceofferta)
+    {
+        $this->codiceofferta = $codiceofferta;
+
+        return $this;
+    }
+
+    /**
+     * Get codiceofferta
+     *
+     * @return string
+     */
+    public function getCodiceofferta()
+    {
+        return $this->codiceofferta;
+    }
+
+    /**
+     * Set flgmultiplo
+     *
+     * @param integer $flgmultiplo
+     *
+     * @return Item
+     */
+    public function setFlgmultiplo($flgmultiplo)
+    {
+        $this->flgmultiplo = $flgmultiplo;
+
+        return $this;
+    }
+
+    /**
+     * Get flgmultiplo
+     *
+     * @return integer
+     */
+    public function getFlgmultiplo()
+    {
+        return $this->flgmultiplo;
+    }
+
+    /**
+     * Set flgdivulgataeliminaz
+     *
+     * @param integer $flgdivulgataeliminaz
+     *
+     * @return Item
+     */
+    public function setFlgdivulgataeliminaz($flgdivulgataeliminaz)
+    {
+        $this->flgdivulgataeliminaz = $flgdivulgataeliminaz;
+
+        return $this;
+    }
+
+    /**
+     * Get flgdivulgataeliminaz
+     *
+     * @return integer
+     */
+    public function getFlgdivulgataeliminaz()
+    {
+        return $this->flgdivulgataeliminaz;
+    }
+
+    /**
+     * Get codart
+     *
+     * @return string
+     */
+    public function getCodart()
+    {
+        return $this->codart;
+    }
+
+    /**
+     * Set codfammerc
+     *
+     * @param \AppBundle\Entity\Category $codfammerc
+     *
+     * @return Item
+     */
+    public function setCodfammerc(\AppBundle\Entity\Category $codfammerc = null)
+    {
+        $this->codfammerc = $codfammerc;
+
+        return $this;
+    }
+
+    /**
+     * Get codfammerc
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCodfammerc()
+    {
+        return $this->codfammerc;
+    }
+
+    /**
+     * Set codfornitore
+     *
+     * @param \AppBundle\Entity\Partner $codfornitore
+     *
+     * @return Item
+     */
+    public function setCodfornitore(\AppBundle\Entity\Partner $codfornitore = null)
+    {
+        $this->codfornitore = $codfornitore;
+
+        return $this;
+    }
+
+    /**
+     * Get codfornitore
+     *
+     * @return \AppBundle\Entity\Partner
+     */
+    public function getCodfornitore()
+    {
+        return $this->codfornitore;
+    }
+
+    /**
+     * Set codrepecr
+     *
+     * @param \AppBundle\Entity\Departement $codrepecr
+     *
+     * @return Item
+     */
+    public function setCodrepecr(\AppBundle\Entity\Departement $codrepecr = null)
+    {
+        $this->codrepecr = $codrepecr;
+
+        return $this;
+    }
+
+    /**
+     * Get codrepecr
+     *
+     * @return \AppBundle\Entity\Departement
+     */
+    public function getCodrepecr()
+    {
+        return $this->codrepecr;
+    }
+
+    /**
+     * Set flgstatoarticolo
+     *
+     * @param \AppBundle\Entity\Status $flgstatoarticolo
+     *
+     * @return Item
+     */
+    public function setFlgstatoarticolo(\AppBundle\Entity\Status $flgstatoarticolo = null)
+    {
+        $this->flgstatoarticolo = $flgstatoarticolo;
+
+        return $this;
+    }
+
+    /**
+     * Get flgstatoarticolo
+     *
+     * @return \AppBundle\Entity\Status
+     */
+    public function getFlgstatoarticolo()
+    {
+        return $this->flgstatoarticolo;
+    }
+
+    /**
+     * Set codtipoetic
+     *
+     * @param \AppBundle\Entity\Label $codtipoetic
+     *
+     * @return Item
+     */
+    public function setCodtipoetic(\AppBundle\Entity\Label $codtipoetic = null)
+    {
+        $this->codtipoetic = $codtipoetic;
+
+        return $this;
+    }
+
+    /**
+     * Get codtipoetic
+     *
+     * @return \AppBundle\Entity\Label
+     */
+    public function getCodtipoetic()
+    {
+        return $this->codtipoetic;
+    }
+
+    /**
+     * Set codumis
+     *
+     * @param \AppBundle\Entity\Unitmeasure $codumis
+     *
+     * @return Item
+     */
+    public function setCodumis(\AppBundle\Entity\Unitmeasure $codumis = null)
+    {
+        $this->codumis = $codumis;
+
+        return $this;
+    }
+
+    /**
+     * Get codumis
+     *
+     * @return \AppBundle\Entity\Unitmeasure
+     */
+    public function getCodumis()
+    {
+        return $this->codumis;
+    }
+
+    /**
+     * Add codlistino
+     *
+     * @param \AppBundle\Entity\Pricelistinfo $codlistino
+     *
+     * @return Item
+     */
+    public function addCodlistino(\AppBundle\Entity\Pricelistinfo $codlistino)
+    {
+        $this->codlistino[] = $codlistino;
+
+        return $this;
+    }
+
+    /**
+     * Remove codlistino
+     *
+     * @param \AppBundle\Entity\Pricelistinfo $codlistino
+     */
+    public function removeCodlistino(\AppBundle\Entity\Pricelistinfo $codlistino)
+    {
+        $this->codlistino->removeElement($codlistino);
+    }
+
+    /**
+     * Get codlistino
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCodlistino()
+    {
+        return $this->codlistino;
+    }
 }
-
