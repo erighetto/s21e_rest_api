@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AppBundle\Entity\Category" table="tblfammerc">
-    <id name="codrep" type="string" column="CodRep" length="50">
+  <entity name="AppBundle\Entity\Tblrepartiecr" table="tblrepartiecr">
+    <id name="codrep" type="string" column="CodRep" length="6">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="codrepecr" type="string" column="CodRepECR" length="50" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="descrep" type="string" column="DescRep" length="50" nullable="false">
       <options>
         <option name="fixed"/>
@@ -32,12 +27,7 @@
         <option name="default">S</option>
       </options>
     </field>
-    <field name="flgtipofront" type="string" column="flgTipoFront" length="50" nullable="true">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="flgaliqiva" type="integer" column="FlgAliqIVA" nullable="true">
+    <field name="flgaliqiva" type="integer" column="FlgAliqIVa" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>

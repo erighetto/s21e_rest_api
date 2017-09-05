@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AppBundle\Entity\Item" table="tblarticolo">
+  <entity name="AppBundle\Entity\Tblarticolo" table="tblarticolo">
     <indexes>
       <index name="TBLArticolo_TBLArticolo$TBLArticoloCodArt" columns="CodArt"/>
       <index name="FK_TBLArticolo_TBLStatiArticoli" columns="flgStatoArticolo"/>
@@ -209,37 +209,37 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <many-to-one field="codfammerc" target-entity="Category" fetch="LAZY">
+    <many-to-one field="codfammerc" target-entity="Tblfammerc" fetch="LAZY">
       <join-columns>
         <join-column name="CodFamMerc" referenced-column-name="CodRep"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="codfornitore" target-entity="Partner" fetch="LAZY">
+    <many-to-one field="codfornitore" target-entity="Tblinterlocutori" fetch="LAZY">
       <join-columns>
         <join-column name="CodFornitore" referenced-column-name="CodInt"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="codrepecr" target-entity="Departement" fetch="LAZY">
+    <many-to-one field="codrepecr" target-entity="Tblrepartiecr" fetch="LAZY">
       <join-columns>
         <join-column name="CodRepECR" referenced-column-name="CodRep"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="flgstatoarticolo" target-entity="Status" fetch="LAZY">
+    <many-to-one field="flgstatoarticolo" target-entity="Tblstatiarticoli" fetch="LAZY">
       <join-columns>
         <join-column name="flgStatoArticolo" referenced-column-name="CodStato"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="codtipoetic" target-entity="Label" fetch="LAZY">
+    <many-to-one field="codtipoetic" target-entity="Tbltipoetichette" fetch="LAZY">
       <join-columns>
         <join-column name="CodTipoEtic" referenced-column-name="CodTipoEtic"/>
       </join-columns>
     </many-to-one>
-    <many-to-one field="codumis" target-entity="Unitmeasure" fetch="LAZY">
+    <many-to-one field="codumis" target-entity="Tblunitamisura" fetch="LAZY">
       <join-columns>
         <join-column name="CodUmis" referenced-column-name="CodUmis"/>
       </join-columns>
     </many-to-one>
-    <many-to-many field="codlistino" target-entity="Pricelistinfo" inversed-by="codart" fetch="LAZY">
+    <many-to-many field="codlistino" target-entity="Tblanaglistini" inversed-by="codart" fetch="LAZY">
       <join-table name="tbllistinovend">
         <join-columns>
           <join-column name="CodArt" referenced-column-name="CodArt"/>

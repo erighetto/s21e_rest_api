@@ -17,8 +17,6 @@ class Item
      * @var string
      *
      * @ORM\Column(name="CodArtForn", type="string", length=50, nullable=true)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $codartforn;
 
@@ -61,6 +59,10 @@ class Item
      * @var string
      *
      * @ORM\Column(name="CodTipoEAN", type="string", length=6, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="CodFamMerc", referencedColumnName="CodRep")
+     * })
      */
     private $codtipoean;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AppBundle\Entity\Fidelity" table="tbltesserafidelity">
+  <entity name="AppBundle\Entity\Tbltesserafidelity" table="tbltesserafidelity">
     <indexes>
       <index name="FK_TBLTesseraFidelity_TBLAnagClienteFidelity" columns="IDCodSocio"/>
     </indexes>
@@ -64,7 +64,7 @@
     <field name="flgtotscontr" type="decimal" column="FlgTotScontr" precision="18" scale="2" nullable="false"/>
     <field name="flgtotart" type="decimal" column="FlgTotArt" precision="18" scale="2" nullable="false"/>
     <field name="flgtotpremi" type="decimal" column="FlgTotPremi" precision="18" scale="2" nullable="false"/>
-    <many-to-one field="idcodsocio" target-entity="Customer" fetch="LAZY">
+    <many-to-one field="idcodsocio" target-entity="Tblanagclientefidelity" fetch="LAZY">
       <join-columns>
         <join-column name="IDCodSocio" referenced-column-name="IDCodiceCliente"/>
       </join-columns>
