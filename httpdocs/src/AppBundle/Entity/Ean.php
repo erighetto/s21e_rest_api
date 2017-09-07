@@ -24,14 +24,14 @@ class Ean
      *
      * @ORM\Column(name="flgDataInizioValidità", type="string", length=16, nullable=true)
      */
-    private $flgdatainiziovalidità;
+    private $flgdatainiziovalidita;
 
     /**
      * @var string
      *
      * @ORM\Column(name="flgDataFineValidità", type="string", length=16, nullable=true)
      */
-    private $flgdatafinevalidità;
+    private $flgdatafinevalidita;
 
     /**
      * @var string
@@ -73,14 +73,10 @@ class Ean
     /**
      * @var \AppBundle\Entity\Item
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Item")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CodArt", referencedColumnName="CodArt")
-     * })
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Item", inversedBy="ean")
+     * @ORM\JoinColumn(name="CodArt", referencedColumnName="CodArt")
      */
     private $codart;
-
-
 
     /**
      * Set flgstatoean
@@ -107,51 +103,51 @@ class Ean
     }
 
     /**
-     * Set flgdatainiziovalidità
+     * Set flgdatainiziovalidita
      *
-     * @param string $flgdatainiziovalidità
+     * @param string $flgdatainiziovalidita
      *
      * @return Ean
      */
-    public function setFlgdatainiziovalidità($flgdatainiziovalidità)
+    public function setFlgdatainiziovalidita($flgdatainiziovalidita)
     {
-        $this->flgdatainiziovalidità = $flgdatainiziovalidità;
+        $this->flgdatainiziovalidita = $flgdatainiziovalidita;
 
         return $this;
     }
 
     /**
-     * Get flgdatainiziovalidità
+     * Get flgdatainiziovalidita
      *
      * @return string
      */
-    public function getFlgdatainiziovalidità()
+    public function getFlgdatainiziovalidita()
     {
-        return $this->flgdatainiziovalidità;
+        return $this->flgdatainiziovalidita;
     }
 
     /**
-     * Set flgdatafinevalidità
+     * Set flgdatafinevalidita
      *
-     * @param string $flgdatafinevalidità
+     * @param string $flgdatafinevalidita
      *
      * @return Ean
      */
-    public function setFlgdatafinevalidità($flgdatafinevalidità)
+    public function setFlgdatafinevalidita($flgdatafinevalidita)
     {
-        $this->flgdatafinevalidità = $flgdatafinevalidità;
+        $this->flgdatafinevalidita = $flgdatafinevalidita;
 
         return $this;
     }
 
     /**
-     * Get flgdatafinevalidità
+     * Get flgdatafinevalidita
      *
      * @return string
      */
-    public function getFlgdatafinevalidità()
+    public function getFlgdatafinevalidita()
     {
-        return $this->flgdatafinevalidità;
+        return $this->flgdatafinevalidita;
     }
 
     /**

@@ -56,21 +56,6 @@ class Pricelistinfo
      */
     private $codlistino;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Item", mappedBy="codlistino")
-     */
-    private $codart;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->codart = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
 
     /**
      * Set descrizione
@@ -193,6 +178,13 @@ class Pricelistinfo
     }
 
     /**
+     * @param string $codlistino
+     */
+    public function setCodlistino(string $codlistino) {
+      $this->codlistino = $codlistino;
+    }
+
+    /**
      * Get codlistino
      *
      * @return string
@@ -202,37 +194,4 @@ class Pricelistinfo
         return $this->codlistino;
     }
 
-    /**
-     * Add codart
-     *
-     * @param \AppBundle\Entity\Item $codart
-     *
-     * @return Pricelistinfo
-     */
-    public function addCodart(\AppBundle\Entity\Item $codart)
-    {
-        $this->codart[] = $codart;
-
-        return $this;
-    }
-
-    /**
-     * Remove codart
-     *
-     * @param \AppBundle\Entity\Item $codart
-     */
-    public function removeCodart(\AppBundle\Entity\Item $codart)
-    {
-        $this->codart->removeElement($codart);
-    }
-
-    /**
-     * Get codart
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCodart()
-    {
-        return $this->codart;
-    }
 }
