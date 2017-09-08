@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Item
  *
- * @ORM\Table(name="tblarticolo", indexes={@ORM\Index(name="TBLArticolo_TBLArticolo$TBLArticoloCodArt", columns={"CodArt"}), @ORM\Index(name="FK_TBLArticolo_TBLStatiArticoli", columns={"flgStatoArticolo"}), @ORM\Index(name="FK_TBLArticolo_TBLFamMerc", columns={"CodFamMerc"}), @ORM\Index(name="FK_TBLArticolo_TBLTipoEtichette", columns={"CodTipoEtic"}), @ORM\Index(name="FK_TBLArticolo_TBLRepartiECR", columns={"CodRepECR"}), @ORM\Index(name="FK_TBLArticolo_TBLUnitaMisura", columns={"CodUmis"}), @ORM\Index(name="FK_TBLArticolo_TBLInterlocutori", columns={"CodFornitore"})})
+ * @ORM\Table(name="tblarticolo", indexes={@ORM\Index(name="TBLArticolo_TBLArticolo_TBLArticoloCodArt", columns={"CodArt"}), @ORM\Index(name="FK_TBLArticolo_TBLStatiArticoli", columns={"flgStatoArticolo"}), @ORM\Index(name="FK_TBLArticolo_TBLFamMerc", columns={"CodFamMerc"}), @ORM\Index(name="FK_TBLArticolo_TBLTipoEtichette", columns={"CodTipoEtic"}), @ORM\Index(name="FK_TBLArticolo_TBLRepartiECR", columns={"CodRepECR"}), @ORM\Index(name="FK_TBLArticolo_TBLUnitaMisura", columns={"CodUmis"}), @ORM\Index(name="FK_TBLArticolo_TBLInterlocutori", columns={"CodFornitore"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ItemRepository")
  */
