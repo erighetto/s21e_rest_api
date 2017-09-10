@@ -4,7 +4,7 @@ REST api for e21s project
 Installazione:
 
     git clone https://github.com/erighetto/s21e_rest_api.git  
-    cd s21e  
+    cd s21e_rest_api
     cp local/docker-compose.yml.dist local/docker-compose.yml  
 
 Modificare all'interno di **docker-compose.yml** i parametri necessari al funzionamento di Docker sulla tua macchina.
