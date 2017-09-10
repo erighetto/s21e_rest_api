@@ -1,5 +1,6 @@
+
 # s21e_rest_api
-REST api for e21s project
+REST api for [e21s](https://github.com/erighetto/s21e) project
 
 Installazione:
 
@@ -19,5 +20,4 @@ In un'altra shell poi esegui:
     
     docker exec -it local_symfony-app_1 bash
     composer install --prefer-dist
-    
     
