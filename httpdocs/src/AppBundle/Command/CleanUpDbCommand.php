@@ -35,31 +35,38 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 		/** @var \AppBundle\Repository\ItemRepository $repository */
 		$repository = $manager->getRepository(Item::class);
 		
-		$batchSize = 20;
-		$yesterday = new \DateTime();
-		$yesterday->sub(new \DateInterval('P1D'));
-		
-		$output->writeln('Rimuovo tutti gli item che hanno parametri inconsistenti');
 		
 		$items = $repository->findAllInconsistencies();
-		/**  @var \AppBundle\Entity\Item $item */
-		foreach ($items as $i => $item) {
-			$output->writeln('Elimino ' . $item->getCodart());
-			$item->setFlgdataeliminaz($yesterday->format('d/m/Y'));
-			$manager->persist($item);
-			$manager->flush();
+		if (!empty($items)) {
+			
+			$output->writeln('Rimuovo tutti gli item che hanno parametri inconsistenti');
+			
+			$yesterday = new \DateTime();
+			$yesterday->sub(new \DateInterval('P1D'));
+			
+			/**  @var \AppBundle\Entity\Item $item */
+			foreach ($items as $i => $item) {
+				$output->writeln('Elimino ' . $item->getCodart());
+				$item->setFlgdataeliminaz($yesterday->format('d/m/Y'));
+				$manager->persist($item);
+				$manager->flush();
+			}
 		}
-		
-		$output->writeln('Aggiorno tutti gli item che tipo etichetta errata');
+
 		
 		$items = $repository->findBy(['codtipoetic' => '']);
-		/**  @var \AppBundle\Entity\Item $item */
-		foreach ($items as $i => $item) {
-			$output->writeln('Aggiorno ' . $item->getCodart());
-			$item->setCodtipoetic('001');
-			$manager->persist($item);
-			$manager->flush();
+		if (!empty($items)) {
+			$output->writeln('Aggiorno tutti gli item che tipo etichetta errata');
+			
+			/**  @var \AppBundle\Entity\Item $item */
+			foreach ($items as $i => $item) {
+				$output->writeln('Aggiorno ' . $item->getCodart());
+				$item->setCodtipoetic('001');
+				$manager->persist($item);
+				$manager->flush();
+			}
 		}
+
 		
 		$output->writeln('Pulizia finita');
 	}
