@@ -24,7 +24,7 @@ class ItemRepository extends EntityRepository {
   {
     $fields = array_keys($this->getClassMetadata()->fieldMappings);
     $queryBuilder = $this->createQueryBuilder('i')
-			->where('STR_TO_DATE(i.flgdataeliminaz, %d/%m/%Y) < :today')
+			->where("STR_TO_DATE(i.flgdataeliminaz, '%d/%m/%Y') < :today")
 			->setParameter('today', Date('d/m/Y'));
 
     foreach ($fields as $field) {
