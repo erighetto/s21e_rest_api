@@ -36,6 +36,8 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 		$repository = $manager->getRepository(Item::class);
 		
 		$batchSize = 20;
+		$today = new \DateTime();
+		$today->sub(new \DateInterval('P1D'));
 		
 		$output->writeln('Rimuovo tutti gli item che hanno parametri inconsistenti');
 		
@@ -43,7 +45,8 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 		/**  @var \AppBundle\Entity\Item $item */
 		foreach ($items as $i => $item) {
 			$output->writeln('Elimino ' . $item->getCodart());
-			$manager->remove($item);
+			$item->setFlgdataeliminaz($today->format('d/m/Y'));
+			$manager->persist($item);
 			// flush everything to the database every 20 inserts
 			if (($i % $batchSize) == 0) {
 				$manager->flush();

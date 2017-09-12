@@ -23,7 +23,9 @@ class ItemRepository extends EntityRepository {
   public function findAllPaginated($limit, $page, array $sorting = array())
   {
     $fields = array_keys($this->getClassMetadata()->fieldMappings);
-    $queryBuilder = $this->createQueryBuilder('i');
+    $queryBuilder = $this->createQueryBuilder('i')
+			->where('DATE(i.flgdataeliminaz) < :today')
+			->setParameter('today', Date('d/m/Y'));
 
     foreach ($fields as $field) {
       if (isset($sorting[$field])) {
