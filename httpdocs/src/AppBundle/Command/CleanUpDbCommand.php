@@ -36,8 +36,8 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 		$repository = $manager->getRepository(Item::class);
 		
 		$batchSize = 20;
-		$today = new \DateTime();
-		$today->sub(new \DateInterval('P1D'));
+		$yesterday = new \DateTime();
+		$yesterday->sub(new \DateInterval('P1D'));
 		
 		$output->writeln('Rimuovo tutti gli item che hanno parametri inconsistenti');
 		
@@ -45,13 +45,9 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 		/**  @var \AppBundle\Entity\Item $item */
 		foreach ($items as $i => $item) {
 			$output->writeln('Elimino ' . $item->getCodart());
-			$item->setFlgdataeliminaz($today->format('d/m/Y'));
+			$item->setFlgdataeliminaz($yesterday->format('d/m/Y'));
 			$manager->persist($item);
-			// flush everything to the database every 20 inserts
-			if (($i % $batchSize) == 0) {
-				$manager->flush();
-				$manager->clear();
-			}
+			$manager->flush();
 		}
 		
 		$output->writeln('Aggiorno tutti gli item che tipo etichetta errata');
@@ -62,15 +58,8 @@ class CleanUpDbCommand extends ContainerAwareCommand {
 			$output->writeln('Aggiorno ' . $item->getCodart());
 			$item->setCodtipoetic('001');
 			$manager->persist($item);
-			// flush everything to the database every 20 inserts
-			if (($i % $batchSize) == 0) {
-				$manager->flush();
-				$manager->clear();
-			}
+			$manager->flush();
 		}
-		
-		// flush the remaining objects
-		$manager->flush();
 		
 		$output->writeln('Pulizia finita');
 	}
