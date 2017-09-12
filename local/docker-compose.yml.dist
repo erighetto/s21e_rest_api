@@ -9,14 +9,13 @@ services:
       - mysql-server
     links:
       - mysql-server
-      - mailcatcher
       - pma
     volumes:
       - "./../httpdocs:/var/www/html"
       - "./config/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
 
   mysql-server:
-    image: mysql:latest
+    image: mariadb:latest
     ports:
       - "3306:3306"
     volumes:
@@ -26,11 +25,6 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: symfony_usr
       MYSQL_PASSWORD: symfony_pwd
-
-  mailcatcher:
-    image: helder/mailcatcher
-    ports:
-      - "8002:80"
 
   pma:
     image: phpmyadmin/phpmyadmin

@@ -7,11 +7,11 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
- * Class ProductRepository
+ * Class ItemRepository
  *
  * @package AppBundle\Repository
  */
-class ItemRepository extends EntityRepository{
+class ItemRepository extends EntityRepository {
 
   /**
    * @param $limit
@@ -39,6 +39,26 @@ class ItemRepository extends EntityRepository{
 
     return $pager;
   }
+	
+	/**
+	 * Estraggo gli item che hanno valori inconsistenti;
+	 *
+	 * @return array
+	 */
+  public function findAllInconsistencies() {
+		$em = $this->getEntityManager();
+		$query = $em->createQuery(
+			'SELECT i
+    FROM AppBundle:Item i
+    WHERE i.codumis NOT IN (SELECT u.codumis FROM AppBundle:Unitmeasure u)
+    OR i.codfammerc NOT IN (SELECT c.codrep FROM AppBundle:Category c)
+    OR i.codfornitore NOT IN (SELECT p.codint FROM AppBundle:Partner p)
+    OR i.codrepecr NOT IN (SELECT d.codrep FROM AppBundle:Departement d)
+    OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM AppBundle:Status s)'
+		);
+		
+		return $query->getResult();
+	}
 
 
 }
