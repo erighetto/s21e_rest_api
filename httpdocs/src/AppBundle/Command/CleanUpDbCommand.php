@@ -64,11 +64,13 @@ class CleanUpDbCommand extends ContainerAwareCommand
 						$output->writeln(
 							'Aggiorno tutti gli item che tipo etichetta errata'
 						);
-						
+
+            $label = $manager->getRepository(Label::class)->find('001');
+
 						/**  @var \AppBundle\Entity\Item $item */
 						foreach ($items as $i => $item) {
 								$output->writeln('Aggiorno '.$item->getCodart());
-								$item->setCodtipoetic('001');
+								$item->setCodtipoetic($label);
 								$manager->persist($item);
 								$manager->flush();
 						}
