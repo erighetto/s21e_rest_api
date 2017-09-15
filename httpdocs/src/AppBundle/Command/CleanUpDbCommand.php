@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use AppBundle\Entity\Item;
+use AppBundle\Entity\Label;
 
 /**
  * Class CleanUpDbCommand
@@ -65,10 +66,12 @@ class CleanUpDbCommand extends ContainerAwareCommand
 							'Aggiorno tutti gli item che tipo etichetta errata'
 						);
 						
+						$label = $manager->getRepository(Label::class)->find('001');
+						
 						/**  @var \AppBundle\Entity\Item $item */
 						foreach ($items as $i => $item) {
 								$output->writeln('Aggiorno '.$item->getCodart());
-								$item->setCodtipoetic('001');
+								$item->setCodtipoetic($label);
 								$manager->persist($item);
 								$manager->flush();
 						}

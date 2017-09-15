@@ -50,6 +50,7 @@ fabric.properties
 # Remote Stack
 /logs/*_log*
 /error_docs/*.html
+/dumps/*.sql
 /.composer
 /.mysql_history
 /.bash_history
