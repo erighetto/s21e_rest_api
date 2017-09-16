@@ -4,14 +4,14 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\FOSRestController;
-use AppBundle\Entity\Customer;
+use AppBundle\Entity\Fidelity;
 
 /**
- * Class CustomerController
+ * Class FidelityController
  *
  * @package AppBundle\Controller
  */
-class CustomerController extends FOSRestController implements ClassResourceInterface
+class FidelityController extends FOSRestController implements ClassResourceInterface
 {
     
     /**
@@ -22,11 +22,11 @@ class CustomerController extends FOSRestController implements ClassResourceInter
     public function getAction($id)
     {
         $data = $this->getDoctrine()
-          ->getRepository(Customer::class)
+          ->getRepository(Fidelity::class)
           ->find($id);
         $view = $this->view($data, 200)
-          ->setTemplate("AppBundle:Customer:getCustomer.html.twig")
-          ->setTemplateVar('customer');
+          ->setTemplate("AppBundle:Fidelity:getFidelity.html.twig")
+          ->setTemplateVar('fidelity');
     
         return $this->handleView($view);
     }

@@ -2,6 +2,6 @@ items:
     type:     rest
     resource: AppBundle\Controller\ItemController
 
-customer:
+fidelity:
     type:     rest
-    resource: AppBundle\Controller\CustomerController
+    resource: AppBundle\Controller\FidelityController
