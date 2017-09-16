@@ -1,3 +1,7 @@
 items:
     type:     rest
     resource: AppBundle\Controller\ItemController
+
+customer:
+    type:     rest
+    resource: AppBundle\Controller\CustomerController

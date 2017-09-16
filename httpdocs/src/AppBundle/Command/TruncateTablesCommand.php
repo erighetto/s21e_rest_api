@@ -35,12 +35,12 @@ class TruncateTablesCommand extends ContainerAwareCommand
 				$connection = $entityManager->getConnection();
 				$schemaManager = $connection->getSchemaManager();
 				
-				$connection->executeQuery(sprintf('SET FOREIGN_KEY_CHECKS = 0;'));
+				$connection->executeQuery('SET FOREIGN_KEY_CHECKS = 0');
 				$tables = $schemaManager->listTableNames();
 				foreach ($tables as $table) {
-						$connection->executeQuery($this->truncateTable($table));
+						$connection->executeQuery($this->getTruncateStatement($table));
 				}
-				$connection->executeQuery(sprintf('SET FOREIGN_KEY_CHECKS = 1;'));
+				$connection->executeQuery('SET FOREIGN_KEY_CHECKS = 1');
 		}
 		
 		/**
@@ -48,7 +48,7 @@ class TruncateTablesCommand extends ContainerAwareCommand
 		 *
 		 * @return string
 		 */
-		protected function truncateTable($tableName)
+		protected function getTruncateStatement($tableName)
 		{
 				return sprintf('TRUNCATE TABLE %s', $tableName);
 		}

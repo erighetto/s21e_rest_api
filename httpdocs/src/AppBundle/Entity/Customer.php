@@ -107,14 +107,14 @@ class Customer
 		 * @ORM\Column(name="FlgLocalitàDom", type="string", length=30,
 		 *   nullable=true)
 		 */
-		private $flglocalitàdom;
+		private $flglocalitadom;
 		
 		/**
 		 * @var string
 		 *
 		 * @ORM\Column(name="FlgCittàDom", type="string", length=30, nullable=true)
 		 */
-		private $flgcittàdom;
+		private $flgcittadom;
 		
 		/**
 		 * @var string
@@ -152,14 +152,14 @@ class Customer
 		 * @ORM\Column(name="FlgLocalitàRes", type="string", length=30,
 		 *   nullable=true)
 		 */
-		private $flglocalitàres;
+		private $flglocalitares;
 		
 		/**
 		 * @var string
 		 *
 		 * @ORM\Column(name="FlgCittàRes", type="string", length=30, nullable=true)
 		 */
-		private $flgcittàres;
+		private $flgcittares;
 		
 		/**
 		 * @var string
@@ -510,51 +510,51 @@ class Customer
 		}
 		
 		/**
-		 * Set flglocalitàdom
+		 * Set flglocalitadom
 		 *
-		 * @param string $flglocalitàdom
+		 * @param string $flglocalitadom
 		 *
 		 * @return Customer
 		 */
-		public function setFlglocalitàdom($flglocalitàdom)
+		public function setFlglocalitadom($flglocalitadom)
 		{
-				$this->flglocalitàdom = $flglocalitàdom;
+				$this->flglocalitadom = $flglocalitadom;
 				
 				return $this;
 		}
 		
 		/**
-		 * Get flglocalitàdom
+		 * Get flglocalitadom
 		 *
 		 * @return string
 		 */
-		public function getFlglocalitàdom()
+		public function getFlglocalitadom()
 		{
-				return $this->flglocalitàdom;
+				return $this->flglocalitadom;
 		}
 		
 		/**
-		 * Set flgcittàdom
+		 * Set flgcittadom
 		 *
-		 * @param string $flgcittàdom
+		 * @param string $flgcittadom
 		 *
 		 * @return Customer
 		 */
-		public function setFlgcittàdom($flgcittàdom)
+		public function setFlgcittadom($flgcittadom)
 		{
-				$this->flgcittàdom = $flgcittàdom;
+				$this->flgcittadom = $flgcittadom;
 				
 				return $this;
 		}
 		
 		/**
-		 * Get flgcittàdom
+		 * Get flgcittadom
 		 *
 		 * @return string
 		 */
-		public function getFlgcittàdom()
+		public function getFlgcittadom()
 		{
-				return $this->flgcittàdom;
+				return $this->flgcittadom;
 		}
 		
 		/**
@@ -654,51 +654,51 @@ class Customer
 		}
 		
 		/**
-		 * Set flglocalitàres
+		 * Set flglocalitares
 		 *
-		 * @param string $flglocalitàres
+		 * @param string $flglocalitares
 		 *
 		 * @return Customer
 		 */
-		public function setFlglocalitàres($flglocalitàres)
+		public function setFlglocalitares($flglocalitares)
 		{
-				$this->flglocalitàres = $flglocalitàres;
+				$this->flglocalitares = $flglocalitares;
 				
 				return $this;
 		}
 		
 		/**
-		 * Get flglocalitàres
+		 * Get flglocalitares
 		 *
 		 * @return string
 		 */
-		public function getFlglocalitàres()
+		public function getFlglocalitares()
 		{
-				return $this->flglocalitàres;
+				return $this->flglocalitares;
 		}
 		
 		/**
-		 * Set flgcittàres
+		 * Set flgcittares
 		 *
-		 * @param string $flgcittàres
+		 * @param string $flgcittares
 		 *
 		 * @return Customer
 		 */
-		public function setFlgcittàres($flgcittàres)
+		public function setFlgcittares($flgcittares)
 		{
-				$this->flgcittàres = $flgcittàres;
+				$this->flgcittares = $flgcittares;
 				
 				return $this;
 		}
 		
 		/**
-		 * Get flgcittàres
+		 * Get flgcittares
 		 *
 		 * @return string
 		 */
-		public function getFlgcittàres()
+		public function getFlgcittares()
 		{
-				return $this->flgcittàres;
+				return $this->flgcittares;
 		}
 		
 		/**

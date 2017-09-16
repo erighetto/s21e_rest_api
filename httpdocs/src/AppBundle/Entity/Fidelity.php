@@ -291,10 +291,9 @@ class Fidelity
 		 *
 		 * @return Fidelity
 		 */
-		public function setFlgdataultimoritiropremiprecpromo(
-			$flgdataultimoritiropremiprecpromo
-		) {
-				$this->flgdataultimoritiropremiprecpromo = $flgdataultimoritiropremiprecpromo;
+		public function setFlgdataultimoritiropremiprecpromo($flgdataultimoritiropremiprecpromo) {
+				
+		    $this->flgdataultimoritiropremiprecpromo = $flgdataultimoritiropremiprecpromo;
 				
 				return $this;
 		}
