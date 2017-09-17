@@ -60,7 +60,7 @@ class ItemRepository extends EntityRepository
     OR i.codrepecr NOT IN (SELECT d.codrep FROM AppBundle:Departement d) OR i.codrepecr = ''
     OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM AppBundle:Status s) OR i.flgstatoarticolo = '')
     AND STR_TO_DATE(i.flgdataeliminaz, '%d/%m/%Y') > :today"
-				)->setParameter('today', Date('d/m/Y'));
+				);
 				
 				return $query->getResult();
 		}
