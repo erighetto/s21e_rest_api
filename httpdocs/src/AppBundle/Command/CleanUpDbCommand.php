@@ -65,7 +65,7 @@ class CleanUpDbCommand extends ContainerAwareCommand
     OR i.codrepecr NOT IN (SELECT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
     OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
         
-        $manager->getConnection()->exec($sql);
+        $this->connection->exec($sql);
         
 				$output->writeln('Pulizia finita');
 		}
