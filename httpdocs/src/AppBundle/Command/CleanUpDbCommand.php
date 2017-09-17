@@ -5,8 +5,7 @@ namespace AppBundle\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use AppBundle\Entity\Item;
-use AppBundle\Entity\Label;
+
 
 /**
  * Class CleanUpDbCommand
@@ -15,8 +14,21 @@ use AppBundle\Entity\Label;
  */
 class CleanUpDbCommand extends ContainerAwareCommand
 {
+    
+    /**
+     * @var \Doctrine\DBAL\Connection
+     */
+    protected $connection;
 		
-		/**
+    public function __construct($name = null)
+    {
+        /** @var \Doctrine\ORM\EntityManagerInterface $manager */
+        $manger = $this->getContainer()->get('doctrine')->getManager();
+        $this->connection = $manger->getConnection();
+        parent::__construct($name);
+    }
+    
+    /**
 		 * @inheritDoc
 		 */
 		protected function configure()
@@ -32,56 +44,29 @@ class CleanUpDbCommand extends ContainerAwareCommand
 		 */
 		protected function execute(InputInterface $input, OutputInterface $output)
 		{
-				
-				/** @var \Doctrine\ORM\EntityManagerInterface $manager */
-				$manager = $this->getContainer()->get('doctrine')->getManager();
-				
-				/** @var \AppBundle\Repository\ItemRepository $repository */
-				$repository = $manager->getRepository(Item::class);
-				
-				$sql = "UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'";
+        
+        $output->writeln(
+          'Rimuovo tutti gli item che hanno parametri inconsistenti'
+        );
+        
+        $this->connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
+        $this->connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
+        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF')");
+        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
+        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
+        
+        $yesterday = new \DateTime();
+        $yesterday->sub(new \DateInterval('P1D'));
+        
+        $sql = "UPDATE tblarticolo i SET flgdataeliminaz = '". $yesterday->format('d/m/Y') ."'
+    WHERE (i.codumis NOT IN (SELECT u.codumis FROM tblunitamisura u) OR i.codumis = ''
+    OR i.codfammerc NOT IN (SELECT c.codrep FROM tblfammerc c) OR i.codfammerc = ''
+    OR i.codfornitore NOT IN (SELECT p.codint FROM tblinterlocutori p) OR i.codfornitore = ''
+    OR i.codrepecr NOT IN (SELECT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
+    OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
         
         $manager->getConnection()->exec($sql);
-				
-				
-				$items = $repository->findAllInconsistencies();
-				if (!empty($items)) {
-						
-						$output->writeln(
-							'Rimuovo tutti gli item che hanno parametri inconsistenti'
-						);
-						
-						$yesterday = new \DateTime();
-						$yesterday->sub(new \DateInterval('P1D'));
-						
-						/**  @var \AppBundle\Entity\Item $item */
-						foreach ($items as $i => $item) {
-								$output->writeln('Elimino '.$item->getCodart());
-								$item->setFlgdataeliminaz($yesterday->format('d/m/Y'));
-								$manager->persist($item);
-								$manager->flush();
-						}
-				}
-				
-				
-				$items = $repository->findBy(['codtipoetic' => '']);
-				if (!empty($items)) {
-						$output->writeln(
-							'Aggiorno tutti gli item che tipo etichetta errata'
-						);
-						
-						$label = $manager->getRepository(Label::class)->find('001');
-						
-						/**  @var \AppBundle\Entity\Item $item */
-						foreach ($items as $i => $item) {
-								$output->writeln('Aggiorno '.$item->getCodart());
-								$item->setCodtipoetic($label);
-								$manager->persist($item);
-								$manager->flush();
-						}
-				}
-				
-				
+        
 				$output->writeln('Pulizia finita');
 		}
 		
