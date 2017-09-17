@@ -39,6 +39,10 @@ class CleanUpDbCommand extends ContainerAwareCommand
 				/** @var \AppBundle\Repository\ItemRepository $repository */
 				$repository = $manager->getRepository(Item::class);
 				
+				$sql = "UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'";
+        
+        $manager->getConnection()->exec($sql);
+				
 				
 				$items = $repository->findAllInconsistencies();
 				if (!empty($items)) {

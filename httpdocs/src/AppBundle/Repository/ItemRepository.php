@@ -52,14 +52,15 @@ class ItemRepository extends EntityRepository
 		{
 				$em = $this->getEntityManager();
 				$query = $em->createQuery(
-					'SELECT i
+					"SELECT i
     FROM AppBundle:Item i
-    WHERE i.codumis NOT IN (SELECT u.codumis FROM AppBundle:Unitmeasure u)
-    OR i.codfammerc NOT IN (SELECT c.codrep FROM AppBundle:Category c)
-    OR i.codfornitore NOT IN (SELECT p.codint FROM AppBundle:Partner p)
-    OR i.codrepecr NOT IN (SELECT d.codrep FROM AppBundle:Departement d)
-    OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM AppBundle:Status s)'
-				);
+    WHERE (i.codumis NOT IN (SELECT u.codumis FROM AppBundle:Unitmeasure u) OR i.codumis = ''
+    OR i.codfammerc NOT IN (SELECT c.codrep FROM AppBundle:Category c) OR i.codfammerc = ''
+    OR i.codfornitore NOT IN (SELECT p.codint FROM AppBundle:Partner p) OR i.codfornitore = ''
+    OR i.codrepecr NOT IN (SELECT d.codrep FROM AppBundle:Departement d) OR i.codrepecr = ''
+    OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM AppBundle:Status s) OR i.flgstatoarticolo = '')
+    AND STR_TO_DATE(i.flgdataeliminaz, '%d/%m/%Y') > :today"
+				)->setParameter('today', Date('d/m/Y'));
 				
 				return $query->getResult();
 		}
