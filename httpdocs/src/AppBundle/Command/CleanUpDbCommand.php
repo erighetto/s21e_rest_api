@@ -48,24 +48,27 @@ class CleanUpDbCommand extends ContainerAwareCommand
         $output->writeln(
           'Rimuovo tutti gli item che hanno parametri inconsistenti'
         );
-        
+
+        this->connection->exec('SET FOREIGN_KEY_CHECKS = 0');
         $this->connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
         $this->connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
-        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF')");
+        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
         $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
         $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
+        $this->connection->exec("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
         
         $yesterday = new \DateTime();
         $yesterday->sub(new \DateInterval('P1D'));
         
         $sql = "UPDATE tblarticolo i SET flgdataeliminaz = '". $yesterday->format('d/m/Y') ."'
-    WHERE (i.codumis NOT IN (SELECT u.codumis FROM tblunitamisura u) OR i.codumis = ''
-    OR i.codfammerc NOT IN (SELECT c.codrep FROM tblfammerc c) OR i.codfammerc = ''
-    OR i.codfornitore NOT IN (SELECT p.codint FROM tblinterlocutori p) OR i.codfornitore = ''
-    OR i.codrepecr NOT IN (SELECT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
-    OR i.flgstatoarticolo NOT IN (SELECT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
+    WHERE (i.codumis NOT IN (SELECT DISTINCT u.codumis FROM tblunitamisura u) OR i.codumis = ''
+    OR i.codfammerc NOT IN (SELECT DISTINCT c.codrep FROM tblfammerc c) OR i.codfammerc = ''
+    OR i.codfornitore NOT IN (SELECT DISTINCT p.codint FROM tblinterlocutori p) OR i.codfornitore = ''
+    OR i.codrepecr NOT IN (SELECT DISTINCT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
+    OR i.flgstatoarticolo NOT IN (SELECT DISTINCT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
         
         $this->connection->exec($sql);
+        $this->connection->exec('SET FOREIGN_KEY_CHECKS = 1');
         
 				$output->writeln('Pulizia finita');
 		}
