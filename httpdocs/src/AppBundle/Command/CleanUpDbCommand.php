@@ -16,19 +16,6 @@ class CleanUpDbCommand extends ContainerAwareCommand
 {
     
     /**
-     * @var \Doctrine\DBAL\Connection
-     */
-    protected $connection;
-		
-    public function __construct($name = null)
-    {
-        /** @var \Doctrine\ORM\EntityManagerInterface $manager */
-        $manger = $this->getContainer()->get('doctrine')->getManager();
-        $this->connection = $manger->getConnection();
-        parent::__construct($name);
-    }
-    
-    /**
 		 * @inheritDoc
 		 */
 		protected function configure()
@@ -44,18 +31,22 @@ class CleanUpDbCommand extends ContainerAwareCommand
 		 */
 		protected function execute(InputInterface $input, OutputInterface $output)
 		{
-        
+
+        /** @var \Doctrine\ORM\EntityManagerInterface $manager */
+        $manger = $this->getContainer()->get('doctrine')->getManager();
+        $connection = $manger->getConnection();
+		    
         $output->writeln(
           'Rimuovo tutti gli item che hanno parametri inconsistenti'
         );
 
-        $this->connection->exec('SET FOREIGN_KEY_CHECKS = 0');
-        $this->connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
-        $this->connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
-        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
-        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
-        $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
-        $this->connection->exec("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
+        $connection->exec('SET FOREIGN_KEY_CHECKS = 0');
+        $connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
+        $connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
+        $connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
+        $connection->exec("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
+        $connection->exec("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
+        $connection->exec("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
         
         $yesterday = new \DateTime();
         $yesterday->sub(new \DateInterval('P1D'));
@@ -67,8 +58,8 @@ class CleanUpDbCommand extends ContainerAwareCommand
     OR i.codrepecr NOT IN (SELECT DISTINCT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
     OR i.flgstatoarticolo NOT IN (SELECT DISTINCT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
         
-        $this->connection->exec($sql);
-        $this->connection->exec('SET FOREIGN_KEY_CHECKS = 1');
+        $connection->exec($sql);
+        $connection->exec('SET FOREIGN_KEY_CHECKS = 1');
         
 				$output->writeln('Pulizia finita');
 		}
