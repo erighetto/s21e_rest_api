@@ -29,7 +29,7 @@ class CleanUpDbCommand extends ContainerAwareCommand
 		/**
 		 * @inheritDoc
 		 */
-		protected function execute(InputInterface $input, OutputInterface $output)
+		protected function executeQueryute(InputInterface $input, OutputInterface $output)
 		{
 
         /** @var \Doctrine\ORM\EntityManagerInterface $manager */
@@ -40,13 +40,13 @@ class CleanUpDbCommand extends ContainerAwareCommand
           'Rimuovo tutti gli item che hanno parametri inconsistenti'
         );
 
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 0');
-        $connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
-        $connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
-        $connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
-        $connection->exec("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
-        $connection->exec("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
-        $connection->exec("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
+        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 0');
+        $connection->executeQuery("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
+        $connection->executeQuery("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
+        $connection->executeQuery("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
+        $connection->executeQuery("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
+        $connection->executeQuery("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
+        $connection->executeQuery("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
         
         $yesterday = new \DateTime();
         $yesterday->sub(new \DateInterval('P1D'));
@@ -58,8 +58,8 @@ class CleanUpDbCommand extends ContainerAwareCommand
     OR i.codrepecr NOT IN (SELECT DISTINCT d.codrep FROM tblrepartiecr d) OR i.codrepecr = ''
     OR i.flgstatoarticolo NOT IN (SELECT DISTINCT s.codstato FROM tblstatiarticoli s) OR i.flgstatoarticolo = '')";
         
-        $connection->exec($sql);
-        $connection->exec('SET FOREIGN_KEY_CHECKS = 1');
+        $connection->executeQuery($sql);
+        $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 1');
         
 				$output->writeln('Pulizia finita');
 		}
