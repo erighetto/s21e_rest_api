@@ -49,7 +49,7 @@ class CleanUpDbCommand extends ContainerAwareCommand
           'Rimuovo tutti gli item che hanno parametri inconsistenti'
         );
 
-        this->connection->exec('SET FOREIGN_KEY_CHECKS = 0');
+        $this->connection->exec('SET FOREIGN_KEY_CHECKS = 0');
         $this->connection->exec("UPDATE tblarticolo SET flgdataeliminaz ='31/12/9999'");
         $this->connection->exec("UPDATE tblarticolo SET CodTipoEtic = '001' WHERE CodTipoEtic = ''");
         $this->connection->exec("UPDATE tblarticolo SET CodUmis = 'PZ' WHERE CodUmis in ('', ' ', '1', 'CF', 'FL', 'VS')");
