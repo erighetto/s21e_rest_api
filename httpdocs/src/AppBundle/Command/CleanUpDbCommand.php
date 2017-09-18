@@ -29,12 +29,12 @@ class CleanUpDbCommand extends ContainerAwareCommand
 		/**
 		 * @inheritDoc
 		 */
-		protected function executeQueryute(InputInterface $input, OutputInterface $output)
+		protected function execute(InputInterface $input, OutputInterface $output)
 		{
 
-        /** @var \Doctrine\ORM\EntityManagerInterface $manager */
-        $manger = $this->getContainer()->get('doctrine')->getManager();
-        $connection = $manger->getConnection();
+        /** @var \Doctrine\ORM\EntityManagerInterface $entityManager */
+        $entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $connection = $entityManager->getConnection();
 		    
         $output->writeln(
           'Rimuovo tutti gli item che hanno parametri inconsistenti'
