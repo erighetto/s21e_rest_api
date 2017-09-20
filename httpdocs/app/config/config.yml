@@ -64,6 +64,7 @@ doctrine:
         dql:
             string_functions:
                 str_to_date: DoctrineExtensions\Query\Mysql\StrToDate
+                now: DoctrineExtensions\Query\Mysql\Now
 
 
 # Swiftmailer Configuration
