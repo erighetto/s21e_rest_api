@@ -10,9 +10,9 @@ services:
     links:
       - mysql-server
       - pma
+      - mailhog
     volumes:
       - "./../httpdocs:/var/www/html"
-      - "./config/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
 
   mysql-server:
     image: mariadb:latest
@@ -27,7 +27,7 @@ services:
       MYSQL_PASSWORD: symfony_pwd
 
   pma:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
     environment:
       PMA_HOST: mysql-server
       PMA_USER: symfony_usr
@@ -36,3 +36,8 @@ services:
       PHP_MAX_INPUT_VARS: 1G
     ports:
       - "8001:80"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 8025:8025
