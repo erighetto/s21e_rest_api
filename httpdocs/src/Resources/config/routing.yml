@@ -1,0 +1,7 @@
+items:
+    type:     rest
+    resource: App\Controller\ItemController
+
+fidelity:
+    type:     rest
+    resource: App\Controller\FidelityController

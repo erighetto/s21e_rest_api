@@ -1,7 +1,0 @@
-items:
-    type:     rest
-    resource: AppBundle\Controller\ItemController
-
-fidelity:
-    type:     rest
-    resource: AppBundle\Controller\FidelityController

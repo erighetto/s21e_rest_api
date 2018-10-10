@@ -13,6 +13,10 @@ services:
       - mailhog
     volumes:
       - "./../httpdocs:/var/www/html"
+    environment:
+      APACHE_DOCUMENT_ROOT: public/
+      PHP_INI_SENDMAIL_PATH: /usr/local/bin/mhsendmail
+      PHP_IDE_CONFIG: "serverName=localhost"
 
   mysql-server:
     image: mariadb:latest
