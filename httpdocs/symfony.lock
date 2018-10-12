@@ -86,6 +86,9 @@
             "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
         }
     },
+    "nikic/php-parser": {
+        "version": "v4.1.0"
+    },
     "pagerfanta/pagerfanta": {
         "version": "v2.0.1"
     },
@@ -182,6 +185,15 @@
     "symfony/inflector": {
         "version": "v4.1.6"
     },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.9.0"
     },
@@ -196,6 +208,9 @@
             "version": "4.0",
             "ref": "5f514d9d3b8a8aac3d62ae6a86b18b90ed0c7826"
         }
+    },
+    "symfony/security": {
+        "version": "v4.1.6"
     },
     "symfony/security-bundle": {
         "version": "3.3",

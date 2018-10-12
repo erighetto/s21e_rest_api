@@ -12,275 +12,170 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ean
 {
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="flgStatoEAN", type="string", length=1, nullable=true)
-		 */
-		private $flgstatoean = 'S';
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="flgDataInizioValidità", type="string", length=16,
-		 *   nullable=true)
-		 */
-		private $flgdatainiziovalidita;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="flgDataFineValidità", type="string", length=16,
-		 *   nullable=true)
-		 */
-		private $flgdatafinevalidita;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="flgDataEliminaz", type="string", length=16,
-		 *   nullable=true)
-		 */
-		private $flgdataeliminaz;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="flgDataIns", type="string", length=16, nullable=true)
-		 */
-		private $flgdatains;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true)
-		 */
-		private $flgprimario;
-		
-		/**
-		 * @var integer
-		 *
-		 * @ORM\Column(name="FlgDivulgataEliminaz", type="integer", nullable=true)
-		 */
-		private $flgdivulgataeliminaz;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="CodEAN", type="string", length=20)
-		 * @ORM\Id
-		 * @ORM\GeneratedValue(strategy="IDENTITY")
-		 */
-		private $codean;
-		
-		/**
-		 * @var \App\Entity\Item
-		 *
-		 * @ORM\ManyToOne(targetEntity="App\Entity\Item", inversedBy="ean")
-		 * @ORM\JoinColumn(name="CodArt", referencedColumnName="CodArt")
-		 */
-		private $codart;
-		
-		/**
-		 * Set flgstatoean
-		 *
-		 * @param string $flgstatoean
-		 *
-		 * @return Ean
-		 */
-		public function setFlgstatoean($flgstatoean)
-		{
-				$this->flgstatoean = $flgstatoean;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgstatoean
-		 *
-		 * @return string
-		 */
-		public function getFlgstatoean()
-		{
-				return $this->flgstatoean;
-		}
-		
-		/**
-		 * Set flgdatainiziovalidita
-		 *
-		 * @param string $flgdatainiziovalidita
-		 *
-		 * @return Ean
-		 */
-		public function setFlgdatainiziovalidita($flgdatainiziovalidita)
-		{
-				$this->flgdatainiziovalidita = $flgdatainiziovalidita;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgdatainiziovalidita
-		 *
-		 * @return string
-		 */
-		public function getFlgdatainiziovalidita()
-		{
-				return $this->flgdatainiziovalidita;
-		}
-		
-		/**
-		 * Set flgdatafinevalidita
-		 *
-		 * @param string $flgdatafinevalidita
-		 *
-		 * @return Ean
-		 */
-		public function setFlgdatafinevalidita($flgdatafinevalidita)
-		{
-				$this->flgdatafinevalidita = $flgdatafinevalidita;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgdatafinevalidita
-		 *
-		 * @return string
-		 */
-		public function getFlgdatafinevalidita()
-		{
-				return $this->flgdatafinevalidita;
-		}
-		
-		/**
-		 * Set flgdataeliminaz
-		 *
-		 * @param string $flgdataeliminaz
-		 *
-		 * @return Ean
-		 */
-		public function setFlgdataeliminaz($flgdataeliminaz)
-		{
-				$this->flgdataeliminaz = $flgdataeliminaz;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgdataeliminaz
-		 *
-		 * @return string
-		 */
-		public function getFlgdataeliminaz()
-		{
-				return $this->flgdataeliminaz;
-		}
-		
-		/**
-		 * Set flgdatains
-		 *
-		 * @param string $flgdatains
-		 *
-		 * @return Ean
-		 */
-		public function setFlgdatains($flgdatains)
-		{
-				$this->flgdatains = $flgdatains;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgdatains
-		 *
-		 * @return string
-		 */
-		public function getFlgdatains()
-		{
-				return $this->flgdatains;
-		}
-		
-		/**
-		 * Set flgprimario
-		 *
-		 * @param string $flgprimario
-		 *
-		 * @return Ean
-		 */
-		public function setFlgprimario($flgprimario)
-		{
-				$this->flgprimario = $flgprimario;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgprimario
-		 *
-		 * @return string
-		 */
-		public function getFlgprimario()
-		{
-				return $this->flgprimario;
-		}
-		
-		/**
-		 * Set flgdivulgataeliminaz
-		 *
-		 * @param integer $flgdivulgataeliminaz
-		 *
-		 * @return Ean
-		 */
-		public function setFlgdivulgataeliminaz($flgdivulgataeliminaz)
-		{
-				$this->flgdivulgataeliminaz = $flgdivulgataeliminaz;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get flgdivulgataeliminaz
-		 *
-		 * @return integer
-		 */
-		public function getFlgdivulgataeliminaz()
-		{
-				return $this->flgdivulgataeliminaz;
-		}
-		
-		/**
-		 * Get codean
-		 *
-		 * @return string
-		 */
-		public function getCodean()
-		{
-				return $this->codean;
-		}
-		
-		/**
-		 * Set codart
-		 *
-		 * @param \App\Entity\Item $codart
-		 *
-		 * @return Ean
-		 */
-		public function setCodart(\App\Entity\Item $codart = null)
-		{
-				$this->codart = $codart;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get codart
-		 *
-		 * @return \App\Entity\Item
-		 */
-		public function getCodart()
-		{
-				return $this->codart;
-		}
+    /**
+     * @var \App\Entity\Item
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Item", inversedBy="ean")
+     * @ORM\JoinColumn(name="CodArt", referencedColumnName="CodArt")
+     */
+    private $codart;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodEAN", type="string", length=20, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codean;
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="flgStatoEAN", type="string", length=1, nullable=true, options={"default"="'S'"})
+     */
+    private $flgstatoean = 'S';
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="flgDataInizioValidità", type="string", length=16, nullable=true, options={"default"="NULL"})
+     */
+    private $flgdatainiziovalidita = 'NULL';
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="flgDataFineValidità", type="string", length=16, nullable=true, options={"default"="NULL"})
+     */
+    private $flgdatafinevalidita = 'NULL';
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="flgDataEliminaz", type="string", length=16, nullable=true, options={"default"="NULL"})
+     */
+    private $flgdataeliminaz = 'NULL';
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="flgDataIns", type="string", length=16, nullable=true, options={"default"="NULL"})
+     */
+    private $flgdatains = 'NULL';
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true, options={"default"="NULL","fixed"=true})
+     */
+    private $flgprimario = 'NULL';
+    
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="FlgDivulgataEliminaz", type="integer", nullable=true, options={"default"="NULL"})
+     */
+    private $flgdivulgataeliminaz = 'NULL';
+
+    public function getCodean(): ?string
+    {
+        return $this->codean;
+    }
+
+    public function getFlgstatoean(): ?string
+    {
+        return $this->flgstatoean;
+    }
+
+    public function setFlgstatoean(?string $flgstatoean): self
+    {
+        $this->flgstatoean = $flgstatoean;
+
+        return $this;
+    }
+
+    public function getFlgdatainiziovalidita(): ?string
+    {
+        return $this->flgdatainiziovalidita;
+    }
+
+    public function setFlgdatainiziovalidita(?string $flgdatainiziovalidita): self
+    {
+        $this->flgdatainiziovalidita = $flgdatainiziovalidita;
+
+        return $this;
+    }
+
+    public function getFlgdatafinevalidita(): ?string
+    {
+        return $this->flgdatafinevalidita;
+    }
+
+    public function setFlgdatafinevalidita(?string $flgdatafinevalidita): self
+    {
+        $this->flgdatafinevalidita = $flgdatafinevalidita;
+
+        return $this;
+    }
+
+    public function getFlgdataeliminaz(): ?string
+    {
+        return $this->flgdataeliminaz;
+    }
+
+    public function setFlgdataeliminaz(?string $flgdataeliminaz): self
+    {
+        $this->flgdataeliminaz = $flgdataeliminaz;
+
+        return $this;
+    }
+
+    public function getFlgdatains(): ?string
+    {
+        return $this->flgdatains;
+    }
+
+    public function setFlgdatains(?string $flgdatains): self
+    {
+        $this->flgdatains = $flgdatains;
+
+        return $this;
+    }
+
+    public function getFlgprimario(): ?string
+    {
+        return $this->flgprimario;
+    }
+
+    public function setFlgprimario(?string $flgprimario): self
+    {
+        $this->flgprimario = $flgprimario;
+
+        return $this;
+    }
+
+    public function getFlgdivulgataeliminaz(): ?int
+    {
+        return $this->flgdivulgataeliminaz;
+    }
+
+    public function setFlgdivulgataeliminaz(?int $flgdivulgataeliminaz): self
+    {
+        $this->flgdivulgataeliminaz = $flgdivulgataeliminaz;
+
+        return $this;
+    }
+
+    public function getCodart(): ?Item
+    {
+        return $this->codart;
+    }
+
+    public function setCodart(?Item $codart): self
+    {
+        $this->codart = $codart;
+
+        return $this;
+    }
 }

@@ -37,17 +37,17 @@ class ItemController extends FOSRestController implements ClassResourceInterface
 					->findAllPaginated($limit, $page, $sorting);
 				
 				$pagerFactory = new PagerfantaFactory();
-				
-				$data = $pagerFactory->createRepresentation(
-					$productsPager,
-					new Route(
-						'get_items', [
-						'limit' => $limit,
-						'page' => $page,
-						'sorting' => $sorting,
-					]
-					)
-				);
+        
+        $data = $pagerFactory->createRepresentation(
+          $productsPager,
+          new Route(
+            'get_items', [
+              'limit' => $limit,
+              'page' => $page,
+              'sorting' => $sorting,
+            ]
+          )
+        );
 				
 				$view = $this->view($data, 200)
 					->setTemplate("App:Item:getItems.html.twig")

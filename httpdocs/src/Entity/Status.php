@@ -12,55 +12,36 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Status
 {
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="DescStato", type="string", length=50, nullable=true)
-		 */
-		private $descstato;
-		
-		/**
-		 * @var string
-		 *
-		 * @ORM\Column(name="CodStato", type="string", length=2)
-		 * @ORM\Id
-		 * @ORM\GeneratedValue(strategy="IDENTITY")
-		 */
-		private $codstato;
-		
-		
-		/**
-		 * Set descstato
-		 *
-		 * @param string $descstato
-		 *
-		 * @return Status
-		 */
-		public function setDescstato($descstato)
-		{
-				$this->descstato = $descstato;
-				
-				return $this;
-		}
-		
-		/**
-		 * Get descstato
-		 *
-		 * @return string
-		 */
-		public function getDescstato()
-		{
-				return $this->descstato;
-		}
-		
-		/**
-		 * Get codstato
-		 *
-		 * @return string
-		 */
-		public function getCodstato()
-		{
-				return $this->codstato;
-		}
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CodStato", type="string", length=2, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $codstato;
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="DescStato", type="string", length=50, nullable=true, options={"default"="NULL"})
+     */
+    private $descstato = 'NULL';
+
+    public function getCodstato(): ?string
+    {
+        return $this->codstato;
+    }
+
+    public function getDescstato(): ?string
+    {
+        return $this->descstato;
+    }
+
+    public function setDescstato(?string $descstato): self
+    {
+        $this->descstato = $descstato;
+
+        return $this;
+    }
 }
