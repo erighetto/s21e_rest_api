@@ -31,9 +31,9 @@ class MeasureUnit
     /**
      * @var float|null
      *
-     * @ORM\Column(name="ValUmis", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ValUmis", type="float", precision=10, scale=0, nullable=true, options={"default"=NULL})
      */
-    private $valumis = 'NULL';
+    private $valumis = NULL;
     
     /**
      * @var string

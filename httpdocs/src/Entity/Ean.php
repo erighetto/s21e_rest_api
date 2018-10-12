@@ -32,51 +32,51 @@ class Ean
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgStatoEAN", type="string", length=1, nullable=true, options={"default"="'S'"})
+     * @ORM\Column(name="flgStatoEAN", type="string", length=1, nullable=true, options={"default"="S"})
      */
     private $flgstatoean = 'S';
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataInizioValidità", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataInizioValidità", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgdatainiziovalidita = 'NULL';
+    private $flgdatainiziovalidita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataFineValidità", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataFineValidità", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgdatafinevalidita = 'NULL';
+    private $flgdatafinevalidita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataEliminaz", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataEliminaz", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgdataeliminaz = 'NULL';
+    private $flgdataeliminaz = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataIns", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataIns", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgdatains = 'NULL';
+    private $flgdatains = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true, options={"default"="NULL","fixed"=true})
+     * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true, options={"default"=NULL,"fixed"=true})
      */
-    private $flgprimario = 'NULL';
+    private $flgprimario = NULL;
     
     /**
      * @var int|null
      *
-     * @ORM\Column(name="FlgDivulgataEliminaz", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgDivulgataEliminaz", type="integer", nullable=true, options={"default"=NULL})
      */
-    private $flgdivulgataeliminaz = 'NULL';
+    private $flgdivulgataeliminaz = NULL;
 
     public function getCodean(): ?string
     {

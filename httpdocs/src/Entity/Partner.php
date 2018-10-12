@@ -24,9 +24,9 @@ class Partner
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodCEDI", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodCEDI", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $codcedi = 'NULL';
+    private $codcedi = NULL;
     
     /**
      * @var string
@@ -38,86 +38,86 @@ class Partner
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Piva", type="string", length=11, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Piva", type="string", length=11, nullable=true, options={"default"=NULL})
      */
-    private $piva = 'NULL';
+    private $piva = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CF", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CF", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $cf = 'NULL';
+    private $cf = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Ind", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Ind", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $ind = 'NULL';
+    private $ind = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Loc", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Loc", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $loc = 'NULL';
+    private $loc = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Citta", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Citta", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $citta = 'NULL';
+    private $citta = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Prv", type="string", length=2, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Prv", type="string", length=2, nullable=true, options={"default"=NULL})
      */
-    private $prv = 'NULL';
+    private $prv = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CAP", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CAP", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $cap = 'NULL';
+    private $cap = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Tel", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Tel", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $tel = 'NULL';
+    private $tel = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Mail", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Mail", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $mail = 'NULL';
+    private $mail = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Web", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Web", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $web = 'NULL';
+    private $web = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=true, options={"default"=NULL})
      */
-    private $flgdatacreaz = 'NULL';
+    private $flgdatacreaz = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataEliminaz", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataEliminaz", type="string", length=20, nullable=true, options={"default"=NULL})
      */
-    private $flgdataeliminaz = 'NULL';
+    private $flgdataeliminaz = NULL;
     
     /**
      * @var bool|null
@@ -129,9 +129,9 @@ class Partner
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodTipoPag", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodTipoPag", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $codtipopag = 'NULL';
+    private $codtipopag = NULL;
     
     /**
      * @var int|null
@@ -171,23 +171,23 @@ class Partner
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgContoC", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgContoC", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgcontoc = 'NULL';
+    private $flgcontoc = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgABI", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgABI", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgabi = 'NULL';
+    private $flgabi = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgCAB", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgCAB", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgcab = 'NULL';
+    private $flgcab = NULL;
 
     public function getCodint(): ?string
     {

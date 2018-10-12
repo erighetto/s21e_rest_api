@@ -24,191 +24,191 @@ class Customer
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Nome", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Nome", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $nome = 'NULL';
+    private $nome = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Cognome", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Cognome", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $cognome = 'NULL';
+    private $cognome = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodiceFiscale", type="string", length=16, nullable=true, options={"default"="NULL","fixed"=true})
+     * @ORM\Column(name="CodiceFiscale", type="string", length=16, nullable=true, options={"default"=NULL,"fixed"=true})
      */
-    private $codicefiscale = 'NULL';
+    private $codicefiscale = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DataNascita", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DataNascita", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $datanascita = 'NULL';
+    private $datanascita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgLuogoNascita", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgLuogoNascita", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgluogonascita = 'NULL';
+    private $flgluogonascita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="StatoCivile", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="StatoCivile", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $statocivile = 'NULL';
+    private $statocivile = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Professione", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="Professione", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $professione = 'NULL';
+    private $professione = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DataInserimento", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DataInserimento", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $datainserimento = 'NULL';
+    private $datainserimento = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgSesso", type="string", length=1, nullable=true, options={"default"="NULL","fixed"=true})
+     * @ORM\Column(name="FlgSesso", type="string", length=1, nullable=true, options={"default"=NULL,"fixed"=true})
      */
-    private $flgsesso = 'NULL';
+    private $flgsesso = NULL;
     
     /**
      * @var int|null
      *
-     * @ORM\Column(name="FlgComponentiFamiglia", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgComponentiFamiglia", type="integer", nullable=true, options={"default"=NULL})
      */
-    private $flgcomponentifamiglia = 'NULL';
+    private $flgcomponentifamiglia = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgIndirizzoDom", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgIndirizzoDom", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgindirizzodom = 'NULL';
+    private $flgindirizzodom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCivicoDom", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCivicoDom", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $flgcivicodom = 'NULL';
+    private $flgcivicodom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgLocalitàDom", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgLocalitàDom", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flglocalitadom = 'NULL';
+    private $flglocalitadom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCittàDom", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCittàDom", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgcittadom = 'NULL';
+    private $flgcittadom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgProvinciaDom", type="string", length=2, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgProvinciaDom", type="string", length=2, nullable=true, options={"default"=NULL})
      */
-    private $flgprovinciadom = 'NULL';
+    private $flgprovinciadom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCapDom", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCapDom", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $flgcapdom = 'NULL';
+    private $flgcapdom = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgIndirizzoRes", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgIndirizzoRes", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgindirizzores = 'NULL';
+    private $flgindirizzores = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCivicoRes", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCivicoRes", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $flgcivicores = 'NULL';
+    private $flgcivicores = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgLocalitàRes", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgLocalitàRes", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flglocalitares = 'NULL';
+    private $flglocalitares = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCittàRes", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCittàRes", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgcittares = 'NULL';
+    private $flgcittares = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgProvinciaRes", type="string", length=2, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgProvinciaRes", type="string", length=2, nullable=true, options={"default"=NULL})
      */
-    private $flgprovinciares = 'NULL';
+    private $flgprovinciares = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCapRes", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCapRes", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $flgcapres = 'NULL';
+    private $flgcapres = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgTelefono", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgTelefono", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgtelefono = 'NULL';
+    private $flgtelefono = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgEMail", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgEMail", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgemail = 'NULL';
+    private $flgemail = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgCellulare", type="string", length=16, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgCellulare", type="string", length=16, nullable=true, options={"default"=NULL})
      */
-    private $flgcellulare = 'NULL';
+    private $flgcellulare = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgWeb", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgWeb", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $flgweb = 'NULL';
+    private $flgweb = NULL;
     
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="FlgConsenso", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgConsenso", type="boolean", nullable=true, options={"default"=NULL})
      */
-    private $flgconsenso = 'NULL';
+    private $flgconsenso = NULL;
 
     public function getIdcodicecliente(): ?string
     {

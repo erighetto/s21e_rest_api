@@ -91,23 +91,23 @@ class PriceList
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgDataInizioValidita", type="string", length=19, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgDataInizioValidita", type="string", length=19, nullable=true, options={"default"=NULL})
      */
-    private $flgdatainiziovalidita = 'NULL';
+    private $flgdatainiziovalidita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgDataFineValidita", type="string", length=19, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgDataFineValidita", type="string", length=19, nullable=true, options={"default"=NULL})
      */
-    private $flgdatafinevalidita = 'NULL';
+    private $flgdatafinevalidita = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgDataUltimaModifica", type="string", length=19, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgDataUltimaModifica", type="string", length=19, nullable=true, options={"default"=NULL})
      */
-    private $flgdataultimamodifica = 'NULL';
+    private $flgdataultimamodifica = NULL;
 
     public function getPrzvendcons(): ?float
     {

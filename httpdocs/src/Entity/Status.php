@@ -24,9 +24,9 @@ class Status
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DescStato", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DescStato", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $descstato = 'NULL';
+    private $descstato = NULL;
 
     public function getCodstato(): ?string
     {

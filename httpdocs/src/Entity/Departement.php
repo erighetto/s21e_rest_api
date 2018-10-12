@@ -31,30 +31,35 @@ class Departement
     /**
      * @var string
      *
-     * @ORM\Column(name="flgStato", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgStato", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgstato = 'S';
     
     /**
      * @var string
      *
-     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=false, options={"default"="'getdate()'"})
+     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=false)
      */
-    private $flgdatacreaz = 'getdate()';
+    private $flgdatacreaz;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="flgCategoriaStatistica", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgCategoriaStatistica", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgcategoriastatistica = 'S';
     
     /**
      * @var int|null
      *
-     * @ORM\Column(name="FlgAliqIVa", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgAliqIVa", type="integer", nullable=true, options={"default"=NULL})
      */
-    private $flgaliqiva = 'NULL';
+    private $flgaliqiva = NULL;
+    
+    public function __construct()
+    {
+        $this->flgdatacreaz = date('Y-m-d H:i:s');
+    }
 
     public function getCodrep(): ?string
     {

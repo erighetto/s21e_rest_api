@@ -27,16 +27,16 @@ class Item
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodArtForn", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodArtForn", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $codartforn = 'NULL';
+    private $codartforn = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodFornitoreCEDI", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodFornitoreCEDI", type="string", length=20, nullable=true, options={"default"=NULL})
      */
-    private $codfornitorecedi = 'NULL';
+    private $codfornitorecedi = NULL;
     
     /**
      * @var \App\Entity\Departement
@@ -46,14 +46,14 @@ class Item
      *   @ORM\JoinColumn(name="CodRepECR", referencedColumnName="CodRep")
      * })
      */
-    private $codrepecr = 'NULL';
+    private $codrepecr = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodRepBIL", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodRepBIL", type="string", length=10, nullable=true, options={"default"=NULL})
      */
-    private $codrepbil = 'NULL';
+    private $codrepbil = NULL;
     
     /**
      * @var \App\Entity\Category
@@ -68,9 +68,9 @@ class Item
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodSottoFam", type="string", length=6, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodSottoFam", type="string", length=6, nullable=true, options={"default"=NULL})
      */
-    private $codsottofam = 'NULL';
+    private $codsottofam = NULL;
     
     /**
      * @var \App\Entity\Partner
@@ -80,14 +80,14 @@ class Item
      *   @ORM\JoinColumn(name="CodFornitore", referencedColumnName="CodInt")
      * })
      */
-    private $codfornitore = 'NULL';
+    private $codfornitore = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodFornitoreAlt", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodFornitoreAlt", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $codfornitorealt = 'NULL';
+    private $codfornitorealt = NULL;
     
     /**
      * @var \App\Entity\Vat
@@ -122,30 +122,30 @@ class Item
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodTipoEAN", type="string", length=6, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodTipoEAN", type="string", length=6, nullable=true, options={"default"=NULL})
      */
-    private $codtipoean = 'NULL';
+    private $codtipoean = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodBilancia", type="string", length=6, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodBilancia", type="string", length=6, nullable=true, options={"default"=NULL})
      */
-    private $codbilancia = 'NULL';
+    private $codbilancia = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodBanco", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodBanco", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $codbanco = 'NULL';
+    private $codbanco = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodAgg", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodAgg", type="string", length=10, nullable=true, options={"default"=NULL})
      */
-    private $codagg = 'NULL';
+    private $codagg = NULL;
     
     /**
      * @var string
@@ -157,30 +157,30 @@ class Item
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DescArticoloAlt", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DescArticoloAlt", type="string", length=100, nullable=true, options={"default"=NULL})
      */
-    private $descarticoloalt = 'NULL';
+    private $descarticoloalt = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DescArticoloEcr", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DescArticoloEcr", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $descarticoloecr = 'NULL';
+    private $descarticoloecr = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="DescArticoloBil", type="string", length=30, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="DescArticoloBil", type="string", length=30, nullable=true, options={"default"=NULL})
      */
-    private $descarticolobil = 'NULL';
+    private $descarticolobil = NULL;
     
     /**
      * @var int|null
      *
-     * @ORM\Column(name="PxC", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="PxC", type="integer", nullable=true, options={"default"=NULL})
      */
-    private $pxc = 'NULL';
+    private $pxc = NULL;
     
     /**
      * @var int|null
@@ -220,21 +220,21 @@ class Item
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgSpedBil", type="string", length=1, nullable=true, options={"default"="'N'"})
+     * @ORM\Column(name="flgSpedBil", type="string", length=1, nullable=true, options={"default"="N"})
      */
     private $flgspedbil = 'N';
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgArtTracc", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgArtTracc", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgarttracc = 'NULL';
+    private $flgarttracc = NULL;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="flgAssortimento", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgAssortimento", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgassortimento = 'S';
     
@@ -251,93 +251,93 @@ class Item
     /**
      * @var string
      *
-     * @ORM\Column(name="flgVend", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgVend", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgvend = 'S';
     
     /**
      * @var string
      *
-     * @ORM\Column(name="flgPrintEtic", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgPrintEtic", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgprintetic = 'S';
     
     /**
      * @var string
      *
-     * @ORM\Column(name="flgVariaz", type="string", length=1, nullable=false, options={"default"="'S'"})
+     * @ORM\Column(name="flgVariaz", type="string", length=1, nullable=false, options={"default"="S"})
      */
     private $flgvariaz = 'S';
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgProvenienza", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgProvenienza", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgprovenienza = 'NULL';
+    private $flgprovenienza = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgCalibro", type="string", length=50, nullable=true, options={"default"="'0'"})
+     * @ORM\Column(name="flgCalibro", type="string", length=50, nullable=true, options={"default"="0"})
      */
     private $flgcalibro = '0';
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgCategoria", type="string", length=50, nullable=true, options={"default"="'0'"})
+     * @ORM\Column(name="flgCategoria", type="string", length=50, nullable=true, options={"default"="0"})
      */
     private $flgcategoria = '0';
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataCreaz", type="string", length=20, nullable=true, options={"default"=NULL})
      */
-    private $flgdatacreaz = 'NULL';
+    private $flgdatacreaz = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgDataEliminaz", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDataEliminaz", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgdataeliminaz = 'NULL';
+    private $flgdataeliminaz = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgArtTO", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgArtTO", type="string", length=50, nullable=true, options={"default"=NULL})
      */
-    private $flgartto = 'NULL';
+    private $flgartto = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="flgAspetto", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgAspetto", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $flgaspetto = 'NULL';
+    private $flgaspetto = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="IDTipoArticolo", type="string", length=5, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="IDTipoArticolo", type="string", length=5, nullable=true, options={"default"=NULL})
      */
-    private $idtipoarticolo = 'NULL';
+    private $idtipoarticolo = NULL;
     
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="FlgOfferta", type="boolean", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="FlgOfferta", type="boolean", nullable=true, options={"default"=NULL})
      */
-    private $flgofferta = 'NULL';
+    private $flgofferta = NULL;
     
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CodiceOfferta", type="string", length=20, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="CodiceOfferta", type="string", length=20, nullable=true, options={"default"=NULL})
      */
-    private $codiceofferta = 'NULL';
+    private $codiceofferta = NULL;
     
     /**
      * @var int|null
@@ -349,9 +349,9 @@ class Item
     /**
      * @var int|null
      *
-     * @ORM\Column(name="flgDivulgataEliminaz", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="flgDivulgataEliminaz", type="integer", nullable=true, options={"default"=NULL})
      */
-    private $flgdivulgataeliminaz = 'NULL';
+    private $flgdivulgataeliminaz = NULL;
     
     /**
      * @var \Doctrine\Common\Collections\Collection
