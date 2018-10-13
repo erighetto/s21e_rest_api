@@ -120,9 +120,12 @@ class Item
     private $codtipoetic;
     
     /**
-     * @var string|null
+     * @var \App\Entity\EanType
      *
-     * @ORM\Column(name="CodTipoEAN", type="string", length=6, nullable=true, options={"default"=NULL})
+     * @ORM\ManyToOne(targetEntity="App\Entity\EanType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="CodTipoEAN", referencedColumnName="CodTipoEan")
+     * })
      */
     private $codtipoean = NULL;
     
@@ -453,12 +456,12 @@ class Item
         return $this;
     }
 
-    public function getCodtipoean(): ?string
+    public function getCodtipoean(): ?EanType
     {
         return $this->codtipoean;
     }
 
-    public function setCodtipoean(?string $codtipoean): self
+    public function setCodtipoean(?EanType $codtipoean): self
     {
         $this->codtipoean = $codtipoean;
 

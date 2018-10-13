@@ -67,9 +67,9 @@ class Ean
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true, options={"default"=NULL,"fixed"=true})
+     * @ORM\Column(name="FlgPrimario", type="string", length=1, nullable=true, options={"default"="P"})
      */
-    private $flgprimario = NULL;
+    private $flgprimario = "P";
     
     /**
      * @var int|null
