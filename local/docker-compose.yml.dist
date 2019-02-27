@@ -11,7 +11,7 @@ services:
       - pma
       - mailhog
     volumes:
-      - "./../httpdocs:/var/www/html"
+      - "./../web:/var/www/html"
     environment:
       WEB_DOCUMENT_ROOT: "/var/www/html/public"
       PHP_IDE_CONFIG: "serverName=localhost"
