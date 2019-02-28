@@ -1,9 +1,7 @@
 items:
   type:     rest
   resource: App\Controller\ItemController
-  prefix: /api
 
 fidelity:
   type:     rest
   resource: App\Controller\FidelityController
-  prefix: /api
