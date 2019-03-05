@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use App\Entity\Fidelity;
 
 /**
@@ -12,7 +12,7 @@ use App\Entity\Fidelity;
  * @package App\Controller
  *
  */
-class FidelityController extends FOSRestController implements ClassResourceInterface
+class FidelityController extends AbstractFOSRestController implements ClassResourceInterface
 {
     
     /**

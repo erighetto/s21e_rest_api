@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use App\Entity\Item;
 use Hateoas\Configuration\Annotation as Hateoas;
 use Hateoas\Configuration\Route;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Hateoas\Relation("self", href=@Hateoas\Route("get_items"))
  */
-class ItemController extends FOSRestController implements ClassResourceInterface
+class ItemController extends AbstractFOSRestController implements ClassResourceInterface
 {
 		
 		/**
