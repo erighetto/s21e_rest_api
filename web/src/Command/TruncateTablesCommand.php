@@ -5,6 +5,7 @@ namespace App\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class TruncateTablesCommand
@@ -13,7 +14,23 @@ use Symfony\Component\Console\Command\Command;
  */
 class TruncateTablesCommand extends Command
 {
-		
+    
+    /**
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    private $container;
+    
+    /**
+     * TruncateTablesCommand constructor.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        parent::__construct();
+        $this->container = $container;
+    }
+    
 		/**
 		 * @inheritDoc
 		 */
@@ -31,7 +48,7 @@ class TruncateTablesCommand extends Command
 		protected function execute(InputInterface $input, OutputInterface $output)
 		{
 				/** @var \Doctrine\ORM\EntityManagerInterface $entityManager */
-				$entityManager = $this->getContainer()->get('doctrine')->getManager();
+				$entityManager = $this->container->get('doctrine')->getManager();
 				$connection = $entityManager->getConnection();
 				$schemaManager = $connection->getSchemaManager();
 				
