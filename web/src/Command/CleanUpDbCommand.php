@@ -2,9 +2,11 @@
 
 namespace App\Command;
 
+use DateInterval;
+use DateTime;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 
 
 /**
@@ -12,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
  *
  * @package App\Command
  */
-class CleanUpDbCommand extends ContainerAwareCommand
+class CleanUpDbCommand extends Command
 {
     
     /**
@@ -47,9 +49,10 @@ class CleanUpDbCommand extends ContainerAwareCommand
         $connection->executeQuery("UPDATE tblarticolo SET CodUmis = 'LT' WHERE CodUmis = 'L'");
         $connection->executeQuery("UPDATE tblarticolo SET CodUmis = 'GR' WHERE CodUmis = 'G'");
         $connection->executeQuery("UPDATE tblarticolo SET CodUmis = UPPER(CodUmis)");
+        $connection->executeQuery("UPDATE tblarticolo SET CodAliq = LPAD(CodAliq, 2, '0');");
         
-        $yesterday = new \DateTime();
-        $yesterday->sub(new \DateInterval('P1D'));
+        $yesterday = new DateTime();
+        $yesterday->sub(new DateInterval('P1D'));
         
         $sql = "UPDATE tblarticolo i SET flgdataeliminaz = '". $yesterday->format('d/m/Y') ."'
     WHERE (i.codumis NOT IN (SELECT DISTINCT u.codumis FROM tblunitamisura u) OR i.codumis = ''
