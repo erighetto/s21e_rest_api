@@ -5,3 +5,11 @@ items:
 fidelity:
   type:     rest
   resource: App\Controller\FidelityController
+
+default:
+  path: /
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+  defaults:
+    path: 'https://www.supergabry.it'
+    permanent: true
+    keepQueryParams: true
