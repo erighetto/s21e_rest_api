@@ -13,6 +13,7 @@
         "jms/serializer-bundle": "^2.4",
         "pagerfanta/pagerfanta": "^2.0",
         "symfony/apache-pack": "^1.0",
+        "symfony/dotenv": "*",
         "symfony/console": "*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
@@ -23,7 +24,6 @@
     },
     "require-dev": {
         "doctrine/doctrine-migrations-bundle": "^1.3",
-        "symfony/dotenv": "*",
         "symfony/maker-bundle": "^1.7"
     },
     "config": {
