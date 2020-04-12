@@ -1,7 +1,10 @@
-version: '2'
+version: '3'
+
 services:
+
   symfony-app:
     image: erighetto/drupal-dev:latest
+    container_name: ${PROJECT_NAME}_php
     ports:
       - "80:80"
     depends_on:
@@ -20,22 +23,24 @@ services:
 
   mysql-server:
     image: mariadb:latest
+    container_name: ${PROJECT_NAME}_db
     ports:
       - "3306:3306"
     volumes:
       - "/var/lib/mysql"
     environment:
-      MYSQL_DATABASE: s21e_rest_api
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: symfony_usr
-      MYSQL_PASSWORD: symfony_pwd
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
   pma:
     image: phpmyadmin/phpmyadmin:latest
+    container_name: ${PROJECT_NAME}_pwa
     environment:
       PMA_HOST: mysql-server
-      PMA_USER: symfony_usr
-      PMA_PASSWORD: symfony_pwd
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
       PHP_UPLOAD_MAX_FILESIZE: 1G
       PHP_MAX_INPUT_VARS: 1G
     ports:
@@ -43,6 +48,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog:latest
+    container_name: ${PROJECT_NAME}_mh
     ports:
       - 8025:8025
       - 1025:1025
