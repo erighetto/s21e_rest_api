@@ -14,10 +14,14 @@ Modificare all'interno di **docker-compose.yml** i parametri necessari al funzio
 Sucessivamente lancia:
 
     cd local
-    docker-compose up
+    make up
 
 In un'altra shell poi esegui:
     
-    docker exec -it local_symfony-app_1 bash
+    make shell
     composer install --prefer-dist
+    bin/console doctrine:schema:create
+    bin/console app:db:truncatetables
+    bin/console doctrine:database:import dump.sql
+    bin/console app:db:cleanup
     

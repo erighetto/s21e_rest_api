@@ -23,6 +23,9 @@
     "doctrine/dbal": {
         "version": "v2.8.0"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "1.6",
         "recipe": {
@@ -97,6 +100,15 @@
             "version": "2.0",
             "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
         }
+    },
+    "laminas/laminas-code": {
+        "version": "4.3.0"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.2.0"
     },
     "nikic/php-parser": {
         "version": "v4.1.0"
@@ -206,6 +218,9 @@
             "ref": "1717e67afa995e4f01a25ba9ae7aca5b2327bcaa"
         }
     },
+    "symfony/http-client-contracts": {
+        "version": "v2.4.0"
+    },
     "symfony/http-foundation": {
         "version": "v4.1.6"
     },
@@ -227,6 +242,9 @@
     "symfony/mime": {
         "version": "v4.4.1"
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.23.0"
+    },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
     },
@@ -247,6 +265,9 @@
     },
     "symfony/property-access": {
         "version": "v4.1.6"
+    },
+    "symfony/property-info": {
+        "version": "v5.2.8"
     },
     "symfony/routing": {
         "version": "4.0",
@@ -281,6 +302,9 @@
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
+    "symfony/string": {
+        "version": "v5.2.8"
+    },
     "symfony/var-dumper": {
         "version": "v4.4.1"
     },
@@ -292,6 +316,9 @@
     },
     "twig/twig": {
         "version": "v2.5.0"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.2.0"
     },
     "willdurand/hateoas": {
         "version": "2.12.0"

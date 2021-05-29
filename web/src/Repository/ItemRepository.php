@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
@@ -34,7 +34,7 @@ class ItemRepository extends EntityRepository
 						}
 				}
 				
-				$pagerAdapter = new DoctrineORMAdapter($queryBuilder);
+				$pagerAdapter = new QueryAdapter($queryBuilder);
 				$pager = new Pagerfanta($pagerAdapter);
 				$pager->setCurrentPage($page);
 				$pager->setMaxPerPage($limit);
